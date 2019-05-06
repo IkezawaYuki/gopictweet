@@ -59,18 +59,18 @@ func (session *Session) Check(valid bool, err error) {
 	return
 }
 
-func (user *User) Create()(err error){
+func (user *User) Create() (err error) {
 	statement := "insert into users (uuid, email, password, nickname, created_at) values ($1, $2, $3, $4) returning id, uuid, created_at"
 	stmt, err := Db.Prepare(statement)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	defer stmt.Close()
-	err = stmt.QueryRow(createUUID(), user.Email, user.Nickname, time.Now()).Scan(&user.Id, $user.Uuid, $user.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Email, user.Nickname, time.Now()).Scan(&user.Id, &user.Uuid, &user.CreatedAt)
 	return
 }
 
-func (user *User) Delete()(err error) {
+func (user *User) Delete() (err error) {
 	statement := "Delete from users where id = $1"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
@@ -81,7 +81,7 @@ func (user *User) Delete()(err error) {
 	return
 }
 
-func (user *User) Update()(err error) {
+func (user *User) Update() (err error) {
 	statement := "update users set nickname = $2, email = $3 where id = $1"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
@@ -94,7 +94,7 @@ func (user *User) Update()(err error) {
 	}
 }
 
-func (user *User) DeleteAll()(err error) {
+func (user *User) DeleteAll() (err error) {
 	statement := "delete from users"
 	_, err = Db.Exec(statement)
 	return
@@ -148,13 +148,12 @@ func (session *Session) User() (user User, err error) {
 	return
 }
 
-func SessionDeleteAll()(err error){
+func SessionDeleteAll() (err error) {
 	statement := "delete from sessions"
 	stmt, err := Db.Prepare(statement)
-	if err := nil{
-		return 
+	if err != nil {
+		return
 	}
 	defer stmt.Close()
-	_, err := stmt.Exec()
+	_, err = stmt.Exec()
 }
-

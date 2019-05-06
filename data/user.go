@@ -82,3 +82,47 @@ func (user *User) Update(err error) {
 		return
 	}
 }
+
+func (user *User) DeleteAll(err error) {
+	statement := "delete from users"
+	_, err = Db.Exec(statement)
+	return
+}
+
+func Users() (users []User, err error) {
+	statement := "select id, uuid, nickname, email, password, created_at from users"
+	rows, err := Db.Query(statement)
+	if err != nil {
+		return
+	}
+	for rows.Next() {
+		user := User{}
+		err = rows.Scan(&user.Id, &user.Uuid, &user.Email, &user.Password, &user.CreatedAt)
+		if err != nil {
+			return
+		}
+		users = append(users, user)
+	}
+	return
+}
+
+func UserByEmail(email string) (user User, err error) {
+	statement := "select id, uuid, nickname, email, password, created_at from users where email= $1"
+	stmt, err := Db.Prepare(statement)
+	if err != nil {
+		return
+	}
+	defer stmt.Close()
+	err = stmt.QueryRow(email).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.Password, &user.CreatedAt)
+	return
+}
+
+func UserByUUID(uuid string) (user User, err error) {
+	statement := "select id, uuid, nickname, email, password, created_at from users where uuid = $1"
+	stmt, err := Db.Prepare(statement)
+	if err != nil {
+		return
+	}
+	err = stmt.QueryRow(uuid).Scan(&user.Id, &user.Uuid, &user.Email, &user.Password, &user.CreatedAt)
+	return
+}

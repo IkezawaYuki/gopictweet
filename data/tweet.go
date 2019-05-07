@@ -5,6 +5,7 @@ import "time"
 type Tweet struct {
 	Id        int
 	Uuid      string
+	UserId    int
 	Text      string
 	Image     string
 	CreatedAt time.Time
@@ -60,5 +61,67 @@ func (tweet *Tweet) Comments() (comments []Comment, err error) {
 		}
 		comments = append(comments, comment)
 	}
+	return
+}
+
+func (user *User) CreateTweet(text string, image string) (tweet Tweet, err error) {
+	statement := "insert into tweets (uuid, text, image, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, user_id, text, image, created_at"
+	stmt, err := Db.Prepare(statement)
+	if err != nil {
+		return
+	}
+	defer stmt.Close()
+	err = stmt.QueryRow(createUUID(), user.Id, text, image, time.Now()).Scan(&tweet.Id, &tweet.Uuid, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+	return
+}
+
+func (user *User) CreateComment(tweet Tweet, text string) (comment Comment, err error) {
+	statement := "insert into comments (uuid, user_id, tweet_id, text, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, tweet_id, text, created_at"
+	stmt, err := Db.Prepare(statement)
+	if err != nil {
+		return
+	}
+	defer stmt.Close()
+	err = stmt.QueryRow(createUUID(), user.Id, tweet.Id, text, time.Now())
+	return
+}
+
+func Tweets() (tweets []Tweet, err error) {
+	rows, err := Db.Exec("select id, uuid, user_id, text, image, created_at from tweets")
+	if err != nil {
+		return
+	}
+	for rows.Next() {
+		var tweet Tweet
+		err = rows.Scan(&tweet.Id, &tweet.uuid, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+		if err != nil {
+			return
+		}
+		tweets = append(tweets, tweet)
+	}
+	rows.Close()
+}
+
+func TweetByUuid(uuid string) (tweet Tweet, err error) {
+	statement := "select id, uuid, user_id, text, image, created_at from tweets where uuid = $1"
+	stmt, err := Db.Prepare(statement)
+	if err != nil {
+		return
+	}
+	defer stmt.Close()
+	err = stmt.QueryRow(uuid).Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+}
+
+func (tweet *Tweet) User() (user User, err error) {
+	user = User{}
+	Db.QueryRow("select id, uuid, nickname, email, password, created_at from users where id = $1",
+		tweet.UserId).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.Password, &user.CreatedAt)
+	return
+}
+
+func (comment *Comment) User() (user User, err error) {
+	user = User{}
+	Db.QueryRow("select id, uuid, nickname, email, password, created_at from users where id = $1",
+		comment.UserId).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.Password, &user.CreatedAt)
 	return
 }

@@ -3,14 +3,6 @@
 -- DROP TABLE sessions CASCADE;
 -- DROP TABLE comments CASCADE;
 
-CREATE TABLE tweets(
-    id serial PRIMARY KEY,
-    uuid varchar(64) not null unique,
-    text VARCHAR(255),
-    image VARCHAR(255),
-    created_at TIMESTAMP not NULL
-);
-
 CREATE TABLE users(
     id serial PRIMARY KEY,
     uuid varchar(64) not null unique,
@@ -20,6 +12,14 @@ CREATE TABLE users(
     created_at TIMESTAMP not null
 );
 
+CREATE TABLE tweets(
+    id serial PRIMARY KEY,
+    uuid varchar(64) not null unique,
+    user_id INTEGER REFERENCES users(id),
+    text VARCHAR(255),
+    image VARCHAR(255),
+    created_at TIMESTAMP not NULL
+);
 
 CREATE TABLE sessions (
   id         serial primary key,

@@ -148,6 +148,12 @@ func (session *Session) User() (user User, err error) {
 	return
 }
 
+func UserDeleteAll() (err error) {
+	statement := "delete from users"
+	_, err := Db.Exec(statement)
+	return
+}
+
 func SessionDeleteAll() (err error) {
 	statement := "delete from sessions"
 	stmt, err := Db.Prepare(statement)

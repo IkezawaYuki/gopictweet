@@ -76,18 +76,18 @@ func (user *User) CreateTweet(text string, image string) (tweet Tweet, err error
 }
 
 func (user *User) CreateComment(tweet Tweet, text string) (comment Comment, err error) {
-	statement := "insert into comments (uuid, user_id, tweet_id, text, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, tweet_id, text, created_at"
+	statement := "insert into comments (uuid, user_id, tweet_id, text, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, user_id, tweet_id, text, created_at"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
 		return
 	}
 	defer stmt.Close()
-	err = stmt.QueryRow(createUUID(), user.Id, tweet.Id, text, time.Now())
+	err = stmt.QueryRow(createUUID(), user.Id, tweet.Id, text, time.Now()).Scan(&comment.Id, &comment.Uuid, &comment.UserId, &comment.TweetId, &comment.CreatedAt)
 	return
 }
 
 func Tweets() (tweets []Tweet, err error) {
-	rows, err := Db.Exec("select id, uuid, user_id, text, image, created_at from tweets")
+	rows, err := Db.Query("select id, uuid, user_id, text, image, created_at from tweets")
 	if err != nil {
 		return
 	}

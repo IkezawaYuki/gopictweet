@@ -89,9 +89,7 @@ func (user *User) Update() (err error) {
 	}
 	defer stmt.Close()
 	_, err = stmt.Exec(user.Id, user.Nickname, user.Email)
-	if err != nil {
-		return
-	}
+	return
 }
 
 func (user *User) DeleteAll() (err error) {
@@ -150,7 +148,7 @@ func (session *Session) User() (user User, err error) {
 
 func UserDeleteAll() (err error) {
 	statement := "delete from users"
-	_, err := Db.Exec(statement)
+	_, err = Db.Exec(statement)
 	return
 }
 
@@ -162,4 +160,5 @@ func SessionDeleteAll() (err error) {
 	}
 	defer stmt.Close()
 	_, err = stmt.Exec()
+	return
 }

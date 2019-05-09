@@ -93,13 +93,14 @@ func Tweets() (tweets []Tweet, err error) {
 	}
 	for rows.Next() {
 		var tweet Tweet
-		err = rows.Scan(&tweet.Id, &tweet.uuid, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+		err = rows.Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
 		if err != nil {
 			return
 		}
 		tweets = append(tweets, tweet)
 	}
 	rows.Close()
+	return
 }
 
 func TweetByUuid(uuid string) (tweet Tweet, err error) {
@@ -110,6 +111,7 @@ func TweetByUuid(uuid string) (tweet Tweet, err error) {
 	}
 	defer stmt.Close()
 	err = stmt.QueryRow(uuid).Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+	return
 }
 
 func (tweet *Tweet) User() (user User, err error) {

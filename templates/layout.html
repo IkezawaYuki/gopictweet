@@ -1,12 +1,19 @@
+{{ define "layout"}}
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>PicTweet</title>
 </head>
 <body>
-    <p>hello world</p>
+    {{ template "navbar" . }}
+    <div class="container">
+        {{ template "content" . }}
+    </div>
+    <p>hello</p>
 </body>
 </html>
+{{ end }}

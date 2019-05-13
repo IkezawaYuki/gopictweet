@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"./data"
+	"gopictweet/data"
 )
 
 func index(writer http.ResponseWriter, response *http.Request) {

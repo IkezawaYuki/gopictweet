@@ -2,16 +2,16 @@ package data
 
 import "testing"
 
-func TweetDeleteAll() (err error) {
-	db := db()
-	defer db.Close()
-	statement := "delete from tweets"
-	_, err := db.Exec(statement)
-	if err != nil {
-		return
-	}
-	return
-}
+// func TweetDeleteAll() (err error) {
+// 	db := db()
+// 	defer db.Close()
+// 	statement := "delete from tweets"
+// 	_, err = db.Exec(statement)
+// 	if err != nil {
+// 		return
+// 	}
+// 	return
+// }
 
 func Test_CreateTweet(t *testing.T) {
 	setup()
@@ -19,7 +19,7 @@ func Test_CreateTweet(t *testing.T) {
 	if err != nil {
 		t.Error(err, "Cannot create user.")
 	}
-	conv, err := users[0].CreateComment("My first tweeet")
+	conv, err := users[0].CreateTweet("My first tweeet", "hogehoge")
 	if err != nil {
 		t.Error(err, "Cannot create tweet")
 	}

@@ -2,6 +2,7 @@ package data
 
 import (
 	"crypto/rand"
+	"crypto/sha1"
 	"database/sql"
 	"fmt"
 	"log"
@@ -29,5 +30,10 @@ func createUUID() (uuid string) {
 	u[8] = (u[8] | 0x40) & 0x7F
 	u[6] = (u[6] & 0xF) | (0x4 << 4)
 	uuid = fmt.Sprintf("%x-%x-%x-%x-%x", u[0:4], u[4:6], u[6:8], u[8:10], u[10:])
+	return
+}
+
+func Encrypte(plaintext string) (cryptext string) {
+	cryptext = fmt.Sprintf("%s", sha1.Sum([]byte(plaintext)))
 	return
 }

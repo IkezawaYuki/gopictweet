@@ -59,6 +59,16 @@ func (session *Session) Check(valid bool, err error) {
 	return
 }
 
+func (session *Session) DeleteByUUID() (err error) {
+	statement := "delete from session where uuid = $1"
+	stmt, err := Db.Prepare(statement)
+	if err != nil {
+		fmt.Println("session is none")
+	}
+	_, err = stmt.Exec(session.Uuid)
+	return
+}
+
 func (user *User) Create() (err error) {
 	statement := "insert into users (uuid, email, password, nickname, created_at) values ($1, $2, $3, $4) returning id, uuid, created_at"
 	stmt, err := Db.Prepare(statement)

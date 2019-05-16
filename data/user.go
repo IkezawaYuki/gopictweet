@@ -43,7 +43,7 @@ func (user *User) Session() (session Session, err error) {
 	return
 }
 
-func (session *Session) Check(valid bool, err error) {
+func (session *Session) Check() (valid bool, err error) {
 	statement := "select id, uuid, email, user_id, created_at from users where uuid = $1"
 	stmt, err := Db.Prepare(statement)
 	defer stmt.Close()

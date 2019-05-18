@@ -73,12 +73,10 @@ func (user *User) Create() (err error) {
 	statement := "insert into users (uuid, email, password, nickname, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, created_at"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
-		fmt.Println("mataka")
 		return
 	}
-	fmt.Println("toppa?")
 	defer stmt.Close()
-	err = stmt.QueryRow(createUUID(), user.Email, user.Password, user.Nickname, time.Now()).Scan(&user.Id, &user.Uuid, &user.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Email, Encrypt(user.Password), user.Nickname, time.Now()).Scan(&user.Id, &user.Uuid, &user.CreatedAt)
 	return
 }
 

@@ -34,6 +34,6 @@ func createUUID() (uuid string) {
 }
 
 func Encrypt(plaintext string) (cryptext string) {
-	cryptext = fmt.Sprintf("%s", sha1.Sum([]byte(plaintext)))
+	cryptext = fmt.Sprintf("%x", sha1.Sum([]byte(plaintext)))
 	return
 }

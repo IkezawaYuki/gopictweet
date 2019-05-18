@@ -1,29 +1,29 @@
 {{ define "content" }}
     <div class="contents row">
-            <div class="content_post">
-                {{ range . }}
-                    <div class="more">
-                        <span></span>
-                        <ul class="more_list">
-                            <li>
-                                詳細
-                            </li>
-                
-                            <li>
-                                編集
-                            </li>
-                            <li>
-                                削除
-                            </li>
-                
-                        </ul>
-                    </div>
-                
-                    <span class="name">
-                      <a href=""><span>投稿者</span>ikezawa</a>
-                    </span>
+        {{  range . }}
+
+            <div class="content_post" style="background-image: url({{ .Image }})">
+
+                <div class="more">
+                    <span>↓</span>
+                    <ul class="more_list">
+                        <li>
+                            <a href="#">詳細</a>
+                        </li>
+                        <li>
+                            <a href="#">編集</a>
+                        </li>
+                        <li>
+                            <a href="#">削除</a>
+                        </li>
+                    </ul>
                 </div>
-            {{ end }}
-            <p>こんにちは</p>
+
+            <p>テキストを表示</p>
+
+        <span class="name">
+      <a href="#"><span>投稿者</span>ユーザーの名前を表示</a>
+    </div>
+        {{ end }}
     </div>
 {{ end }}

@@ -1,15 +1,23 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func main() {
 	mux := http.NewServeMux()
 
+
+
 	mux.HandleFunc("/", index)
 
+	mux.HandleFunc("/login", login)
+
 	server := &http.Server{
-		Addr:    "127.0.0.1:8080",
+		Addr:    config.Address,
 		Handler: mux,
 	}
+
+
 	server.ListenAndServe()
 }

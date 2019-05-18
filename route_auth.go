@@ -54,7 +54,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func signout(w http.ResponseWriter, r *http.Request) {
+func logout(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("_cookie")
 	if err != http.ErrNoCookie {
 		session := data.Session{Uuid: cookie.Value}

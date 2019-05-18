@@ -11,6 +11,7 @@ import (
 	"os"
 )
 
+var config Configuration
 var logger *log.Logger
 
 type Configuration struct {
@@ -31,7 +32,7 @@ func loadConfig(){
 		panic(err)
 	}
 	decorder := json.NewDecoder(file)
-	config := Configuration{}
+	config = Configuration{}
 	err = decorder.Decode(&config)
 	if err != nil {
 		panic(err)

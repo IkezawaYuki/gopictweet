@@ -14,7 +14,7 @@ var users = []User{
 }
 
 func setup() {
-	// TweetDeleteAll()
+	TweetDeleteAll()
 	SessionDeleteAll()
 	UserDeleteAll()
 }

@@ -9,9 +9,11 @@ import (
 func newTweet(w http.ResponseWriter, r *http.Request) {
 	_, err := session(w, r)
 	if err != nil {
+		fmt.Println("nil")
 		http.Redirect(w, r, "/login", 302)
 	} else {
-		generateHTML(w, r, "layout", "public.navbar", "new.tweet")
+		fmt.Println("elsew")
+		generateHTML(w, nil, "layout", "public.navbar", "new.tweet")
 	}
 }
 

@@ -1,13 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"gopictweet/data"
 	"net/http"
 )
 
 func login(writer http.ResponseWriter, request *http.Request) {
-	template := parseTemplateFiles("login.layout", "public.navbar", "login")
-	template.Execute(writer, nil)
+	generateHTML(writer, nil, "login.layout", "public.navbar", "login")
 }
 
 func signup(writer http.ResponseWriter, request *http.Request) {
@@ -32,11 +32,14 @@ func signupAccount(w http.ResponseWriter, r *http.Request) {
 
 func authenticate(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
+
 	user, err := data.UserByEmail(r.PostFormValue("email"))
 	if err != nil {
-		panic(err)
+		// todo ログインできません的なメッセージを出す。
+		//danger("connot find user")
 	}
-	if user.Password == data.Encrypte(r.PostFormValue("password")) {
+	fmt.Println("danger is throwgn")
+	if user.Password == data.Encrypt(r.PostFormValue("password")) {
 		session, err := user.CreateSession()
 		if err != nil {
 			panic(err)

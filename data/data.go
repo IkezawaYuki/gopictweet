@@ -14,7 +14,7 @@ var Db *sql.DB
 
 func init() {
 	var err error
-	Db, err = sql.Open("postgres", "host=127.0.0.1 port=5432 user=yikezawa password=yikezawa sslmode=disable")
+	Db, err = sql.Open("postgres", "dbname=pictweet host=127.0.0.1 port=5432 user=yikezawa password=yikezawa sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -33,7 +33,7 @@ func createUUID() (uuid string) {
 	return
 }
 
-func Encrypte(plaintext string) (cryptext string) {
+func Encrypt(plaintext string) (cryptext string) {
 	cryptext = fmt.Sprintf("%s", sha1.Sum([]byte(plaintext)))
 	return
 }

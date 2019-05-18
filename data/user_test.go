@@ -1,9 +1,11 @@
 package data
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_UserCreate(t *testing.T) {
-	//setup()
+	setup()
 	if err := users[0].Create(); err != nil {
 		t.Error(err, "Cannot create user.")
 	}

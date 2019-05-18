@@ -1,12 +1,12 @@
--- DROP TABLE tweets CASCADE;
--- DROP TABLE users CASCADE;
--- DROP TABLE sessions CASCADE;
--- DROP TABLE comments CASCADE;
+DROP TABLE tweets CASCADE;
+DROP TABLE users CASCADE;
+DROP TABLE sessions CASCADE;
+DROP TABLE comments CASCADE;
 
 CREATE TABLE users(
     id serial PRIMARY KEY,
     uuid varchar(64) not null unique,
-    nickname VARCHAR(255),
+    nickname VARCHAR(255) not null,
     email VARCHAR(255) not null,
     password VARCHAR(255) not null,
     created_at TIMESTAMP not null

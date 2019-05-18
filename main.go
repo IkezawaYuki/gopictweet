@@ -21,7 +21,7 @@ func main() {
 	mux.HandleFunc("/tweet/new", newTweet)
 	mux.HandleFunc("/tweet/read", readTweet)
 	mux.HandleFunc("/tweet/create", createTweet)
-	mux.HandleFunc("/tweet/new", newTweet)
+	mux.HandleFunc("/tweet/comment", createComment)
 
 
 	server := &http.Server{

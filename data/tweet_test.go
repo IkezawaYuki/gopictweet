@@ -2,16 +2,16 @@ package data
 
 import "testing"
 
-// func TweetDeleteAll() (err error) {
-// 	db := db()
-// 	defer db.Close()
-// 	statement := "delete from tweets"
-// 	_, err = db.Exec(statement)
-// 	if err != nil {
-// 		return
-// 	}
-// 	return
-// }
+func TweetDeleteAll() (err error) {
+	db := db()
+	defer db.Close()
+	statement := "delete from tweets"
+	_, err = db.Exec(statement)
+	if err != nil {
+		return
+	}
+	return
+}
 
 func Test_CreateTweet(t *testing.T) {
 	setup()

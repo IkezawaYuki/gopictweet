@@ -70,13 +70,15 @@ func (session *Session) DeleteByUUID() (err error) {
 }
 
 func (user *User) Create() (err error) {
-	statement := "insert into users (uuid, email, password, nickname, created_at) values ($1, $2, $3, $4) returning id, uuid, created_at"
+	statement := "insert into users (uuid, email, password, nickname, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, created_at"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
+		fmt.Println("mataka")
 		return
 	}
+	fmt.Println("toppa?")
 	defer stmt.Close()
-	err = stmt.QueryRow(createUUID(), user.Email, user.Nickname, time.Now()).Scan(&user.Id, &user.Uuid, &user.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Email, user.Password, user.Nickname, time.Now()).Scan(&user.Id, &user.Uuid, &user.CreatedAt)
 	return
 }
 
@@ -126,13 +128,9 @@ func Users() (users []User, err error) {
 }
 
 func UserByEmail(email string) (user User, err error) {
-	statement := "select id, uuid, nickname, email, password, created_at from users where email= $1"
-	stmt, err := Db.Prepare(statement)
-	if err != nil {
-		return
-	}
-	defer stmt.Close()
-	err = stmt.QueryRow(email).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.Password, &user.CreatedAt)
+	user = User{}
+	err = Db.QueryRow("select id, uuid, nickname, email, password, created_at from users where email = $1", email).
+		Scan(&user.Id, &user.Uuid, &user.Nickname ,&user.Email, &user.Password, &user.CreatedAt)
 	return
 }
 

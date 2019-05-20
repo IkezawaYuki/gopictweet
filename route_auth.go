@@ -17,7 +17,7 @@ func signup(writer http.ResponseWriter, request *http.Request) {
 func signupAccount(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
-		panic(err)
+		danger(err, "cannot pase form")
 	}
 	user := data.User{
 		Nickname: r.PostFormValue("nickname"),
@@ -27,7 +27,7 @@ func signupAccount(w http.ResponseWriter, r *http.Request) {
 	if err = user.Create(); err != nil {
 		panic(err)
 	}
-	http.Redirect(w, r, "login", 302)
+	http.Redirect(w, r, "/login", 302)
 }
 
 func authenticate(w http.ResponseWriter, r *http.Request) {
@@ -42,7 +42,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 	if user.Password == data.Encrypt(r.PostFormValue("password")) {
 		session, err := user.CreateSession()
 		if err != nil {
-			panic(err)
+			danger(err, "Cannot create session")
 		}
 		cookie := http.Cookie{
 			Name:     "_cookie",

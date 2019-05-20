@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -23,12 +24,13 @@ func main() {
 	mux.HandleFunc("/tweet/create", createTweet)
 	mux.HandleFunc("/tweet/comment", createComment)
 
-
 	server := &http.Server{
-		Addr:    config.Address,
-		Handler: mux,
+		Addr:           config.Address,
+		Handler:        mux,
+		ReadTimeout:    time.Duration(config.ReadTimeout * int64(time.Second)),
+		WriteTimeout:   time.Duration(config.WriteTimeout * int64(time.Second)),
+		MaxHeaderBytes: 1 << 20,
 	}
-
 
 	server.ListenAndServe()
 }

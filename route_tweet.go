@@ -8,6 +8,7 @@ import (
 
 func newTweet(w http.ResponseWriter, r *http.Request) {
 	_, err := session(w, r)
+	fmt.Println("newTweet 通過")
 	if err != nil {
 		fmt.Println("nil")
 		http.Redirect(w, r, "/login", 302)

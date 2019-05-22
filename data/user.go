@@ -23,26 +23,27 @@ type Session struct {
 }
 
 func (user *User) CreateSession() (session Session, err error) {
-	statement := "insert into sessions (uuid, email, user_id, created_at) values($1, $2, $3, $4) returning id, email, user_id, created_at"
+	statement := "insert into sessions (uuid, email, user_id, created_at) values($1, $2, $3, $4) returning id, uuid, email, user_id, created_at"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
-		fmt.Println("err is occured")
 		return
 	}
 	defer stmt.Close()
 
-	err = stmt.QueryRow(createUUID(), user.Email, user.Id, time.Now()).Scan(&session.Id, &session.Uuid, &session.UseId, &session.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Email, user.Id, time.Now()).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
 	return
 }
 
+//todo バグ修正
 func (user *User) Session() (session Session, err error) {
 	statement := "select id, uuid, email, user_id, created_at from sessions where user_id = $1"
 	stmt, err := Db.Prepare(statement)
 	defer stmt.Close()
-	err = stmt.QueryRow().Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = stmt.QueryRow(user.Id).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
 	return
 }
 
+//todo バグ修正
 func (session *Session) Check() (valid bool, err error) {
 	statement := "select id, uuid, email, user_id, created_at from users where uuid = $1"
 	stmt, err := Db.Prepare(statement)

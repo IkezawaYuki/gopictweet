@@ -63,8 +63,11 @@ func parseTemplateFiles(filenames ...string) (t *template.Template) {
 
 func session(w http.ResponseWriter, r *http.Request) (ses data.Session, err error) {
 	cookie, err := r.Cookie("_cookie")
+	fmt.Println(cookie)
 	if err == nil {
 		ses = data.Session{Uuid: cookie.Value}
+		fmt.Println(ses)
+		fmt.Println("上")
 		if ok, _ := ses.Check(); !ok {
 			err = errors.New("invalid error")
 		}

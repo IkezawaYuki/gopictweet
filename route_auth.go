@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"gopictweet/data"
 	"net/http"
 )
@@ -38,7 +37,6 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 		// todo ログインできません的なメッセージを出す。
 		//danger("connot find user")
 	}
-	fmt.Println("danger is throwgn")
 	if user.Password == data.Encrypt(r.PostFormValue("password")) {
 		session, err := user.CreateSession()
 		if err != nil {

@@ -34,12 +34,9 @@ func (user *User) CreateSession() (session Session, err error) {
 	return
 }
 
-//todo バグ修正
 func (user *User) Session() (session Session, err error) {
-	statement := "select id, uuid, email, user_id, created_at from sessions where user_id = $1"
-	stmt, err := Db.Prepare(statement)
-	defer stmt.Close()
-	err = stmt.QueryRow(user.Id).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	session = Session{}
+	err = Db.QueryRow("select id, uuid, email, user_id, created_at from users where user_id = $1", user.Uuid).Scan(&session.id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
 	return
 }
 
@@ -129,7 +126,7 @@ func Users() (users []User, err error) {
 func UserByEmail(email string) (user User, err error) {
 	user = User{}
 	err = Db.QueryRow("select id, uuid, nickname, email, password, created_at from users where email = $1", email).
-		Scan(&user.Id, &user.Uuid, &user.Nickname ,&user.Email, &user.Password, &user.CreatedAt)
+		Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.Password, &user.CreatedAt)
 	return
 }
 

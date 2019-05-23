@@ -12,3 +12,13 @@ func index(writer http.ResponseWriter, response *http.Request) {
 		generateHTML(writer, tweets, "layout", "public.navbar", "index")
 	}
 }
+
+func err(w http.ResponseWriter, r *http.Request) {
+	vals := r.URL.Query()
+	_, err := session(w, r)
+	if err != nil {
+		generateHTML(w, vals.Get("Msg"), "layout", "public.navbar", "error")
+	} else {
+		generateHTML(w, vals.Get("Msg"), "layout", "private.navbar", "error")
+	}
+}

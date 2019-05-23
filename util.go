@@ -15,18 +15,17 @@ var config Configuration
 var logger *log.Logger
 
 type Configuration struct {
-	Address string
-	ReadTimeout int64
+	Address      string
+	ReadTimeout  int64
 	WriteTimeout int64
-	Static string
+	Static       string
 }
 
-
-func init(){
+func init() {
 	loadConfig()
 }
 
-func loadConfig(){
+func loadConfig() {
 	file, err := os.Open("config.json")
 	if err != nil {
 		panic(err)
@@ -38,8 +37,6 @@ func loadConfig(){
 		panic(err)
 	}
 }
-
-
 
 func generateHTML(writer http.ResponseWriter, data interface{}, filenames ...string) {
 	var files []string
@@ -75,7 +72,16 @@ func session(w http.ResponseWriter, r *http.Request) (ses data.Session, err erro
 	return
 }
 
+func info(args ...interface{}) {
+	logger.SetPrefix("INFO")
+	logger.Println(args...)
+}
+
 func danger(args ...interface{}) {
 	logger.SetPrefix("ERROR")
+	logger.Println(args...)
+}
+func warning(args ...interface{}) {
+	logger.SetPrefix("WARNING")
 	logger.Println(args...)
 }

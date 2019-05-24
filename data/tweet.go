@@ -1,6 +1,9 @@
 package data
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Tweet struct {
 	Id        int
@@ -65,13 +68,14 @@ func (tweet *Tweet) Comments() (comments []Comment, err error) {
 }
 
 func (user *User) CreateTweet(text string, image string) (tweet Tweet, err error) {
-	statement := "insert into tweets (uuid, text, image, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, user_id, text, image, created_at"
+	fmt.Println("createTweet 通過")
+	statement := "insert into tweets (uuid, user_id, text, image, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, user_id, text, image, created_at"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
 		return
 	}
 	defer stmt.Close()
-	err = stmt.QueryRow(createUUID(), user.Id, text, image, time.Now()).Scan(&tweet.Id, &tweet.Uuid, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Id, text, image, time.Now()).Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
 	return
 }
 

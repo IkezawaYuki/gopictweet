@@ -1,7 +1,8 @@
-DROP TABLE tweets CASCADE;
+
 DROP TABLE users CASCADE;
 DROP TABLE sessions CASCADE;
 DROP TABLE comments CASCADE;
+DROP TABLE tweets CASCADE;
 
 CREATE TABLE users(
     id serial PRIMARY KEY,

@@ -41,7 +41,7 @@ func (user *User) Session() (session Session, err error) {
 }
 
 func (session *Session) Check() (valid bool, err error) {
-	err = Db.QueryRow("select id, uuid, email, user_id, created_at from sessions where uuid = $1").Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = Db.QueryRow("select id, uuid, email, user_id, created_at from sessions where uuid = $1", session.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
 	if err != nil {
 		valid = false
 		return
@@ -136,12 +136,8 @@ func UserByUUID(uuid string) (user User, err error) {
 }
 
 func (session *Session) User() (user User, err error) {
-	statement := "select id, uuid, nickname, email, password, created_at from users where id = $1"
-	stmt, err := Db.Prepare(statement)
-	if err != nil {
-		return
-	}
-	err = stmt.QueryRow(statement, session.Id).Scan(&user.Id, &user.Uuid, &user.Email, &user.Password, &user.CreatedAt)
+	user = User{}
+	Db.QueryRow("select id, uuid, nickname, email, created_at from users where id = $1", session.UseId).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.CreatedAt)
 	return
 }
 

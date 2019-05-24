@@ -36,17 +36,12 @@ func (user *User) CreateSession() (session Session, err error) {
 
 func (user *User) Session() (session Session, err error) {
 	session = Session{}
-	err = Db.QueryRow("select id, uuid, email, user_id, created_at from users where user_id = $1", user.Uuid).Scan(&session.id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = Db.QueryRow("select id, uuid, email, user_id, created_at from users where user_id = $1", user.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
 	return
 }
 
-//todo バグ修正
 func (session *Session) Check() (valid bool, err error) {
-	statement := "select id, uuid, email, user_id, created_at from users where uuid = $1"
-	stmt, err := Db.Prepare(statement)
-	defer stmt.Close()
-
-	err = stmt.QueryRow(session.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = Db.QueryRow("select id, uuid, email, user_id, created_at from sessions where uuid = $1").Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
 	if err != nil {
 		valid = false
 		return

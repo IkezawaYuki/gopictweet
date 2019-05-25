@@ -6,10 +6,17 @@ import (
 	"gopictweet/data"
 )
 
-func index(writer http.ResponseWriter, response *http.Request) {
+func index(w http.ResponseWriter, r *http.Request) {
 	tweets, err := data.Tweets()
-	if err != nil {
-		generateHTML(writer, tweets, "layout", "public.navbar", "index")
+	if err != nil{
+		error_message(w, r, "cannnot get tweets")
+	}else{
+		_, err = session(w, r)
+		if err != nil{
+			generateHTML(w, tweets, "layout", "public.navbar", "index")
+		}else{
+			generateHTML(w, tweets, "layout", "private.navbar", "index")
+		}
 	}
 }
 

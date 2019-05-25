@@ -96,7 +96,7 @@ func Tweets() (tweets []Tweet, err error) {
 		return
 	}
 	for rows.Next() {
-		var tweet Tweet
+		tweet := Tweet{}
 		err = rows.Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
 		if err != nil {
 			return

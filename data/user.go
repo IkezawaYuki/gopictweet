@@ -53,7 +53,7 @@ func (session *Session) Check() (valid bool, err error) {
 }
 
 func (session *Session) DeleteByUUID() (err error) {
-	statement := "delete from session where uuid = $1"
+	statement := "delete from sessions where uuid = $1"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
 		fmt.Println("session is none")

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"gopictweet/data"
 	"net/http"
 )
@@ -57,8 +58,10 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 
 func logout(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("_cookie")
+	fmt.Println("logout通過")
 	if err != http.ErrNoCookie {
 		session := data.Session{Uuid: cookie.Value}
+		fmt.Println("kokoka")
 		err = session.DeleteByUUID()
 	}
 	http.Redirect(w, r, "/", 302)

@@ -1,0 +1,35 @@
+{{ define "content" }}
+    <div class="contents display">
+            <div class="contents_tweet" style="background-image: url({{ .Image }})">
+                <p>{{ .Text }}</p>
+                <span class="name">
+                    <a href="#"><span>{{ .User.Nickname }}</span></a>
+                </span>
+            </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-body">
+
+        <form class="form-inline" role="form" action="/tweet/comment" method="post">
+            <div class="form-control">
+                <textarea placeholder="コメントする" cols="100" name="text" rows="2"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </form>
+
+
+        <div class="comments">
+            <h4>＜コメント一覧＞</h4>
+            {{ range .Comments }}
+            <p>
+                <strong><a href="/users/{{ .Comments.UserId }}">{{ .User.Nickname }}</a>：</strong>
+                {{ .Comments.Text }}
+            </p>
+            {{ end }}
+        </div>
+        </div>
+    </div>
+{{ end }}

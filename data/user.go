@@ -18,7 +18,7 @@ type Session struct {
 	Id        int
 	Uuid      string
 	Email     string
-	UseId     int
+	UserId     int
 	CreatedAt time.Time
 }
 
@@ -30,18 +30,18 @@ func (user *User) CreateSession() (session Session, err error) {
 	}
 	defer stmt.Close()
 
-	err = stmt.QueryRow(createUUID(), user.Email, user.Id, time.Now()).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Email, user.Id, time.Now()).Scan(&session.Id, &session.Uuid, &session.Email, &session.UserId, &session.CreatedAt)
 	return
 }
 
 func (user *User) Session() (session Session, err error) {
 	session = Session{}
-	err = Db.QueryRow("select id, uuid, email, user_id, created_at from users where user_id = $1", user.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = Db.QueryRow("select id, uuid, email, user_id, created_at from users where user_id = $1", user.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UserId, &session.CreatedAt)
 	return
 }
 
 func (session *Session) Check() (valid bool, err error) {
-	err = Db.QueryRow("select id, uuid, email, user_id, created_at from sessions where uuid = $1", session.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UseId, &session.CreatedAt)
+	err = Db.QueryRow("select id, uuid, email, user_id, created_at from sessions where uuid = $1", session.Uuid).Scan(&session.Id, &session.Uuid, &session.Email, &session.UserId, &session.CreatedAt)
 	if err != nil {
 		valid = false
 		return
@@ -137,7 +137,7 @@ func UserByUUID(uuid string) (user User, err error) {
 
 func (session *Session) User() (user User, err error) {
 	user = User{}
-	Db.QueryRow("select id, uuid, nickname, email, created_at from users where id = $1", session.UseId).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.CreatedAt)
+	Db.QueryRow("select id, uuid, nickname, email, created_at from users where id = $1", session.UserId).Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.CreatedAt)
 	return
 }
 

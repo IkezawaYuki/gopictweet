@@ -9,14 +9,14 @@
                     選択
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="#!">詳細</a>
+                    <a class="dropdown-item" href="/tweet/read?id={{.Uuid}}">詳細</a>
                     <a class="dropdown-item" href="#!">編集</a>
                     <a class="dropdown-item" href="#!">削除</a>
                 </div>
             </div>
                 <p>{{ .Text }}</p>
                 <span class="name">
-                    <a href="#"><span>投稿者</span>ユーザーの名前を表示</a>
+                    <a href="#"><span>投稿者:{{ .User.Nickname }}</span></a>
                 </span>
             </div>
         {{ end }}

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"gopictweet/data"
 	"net/http"
 )
@@ -13,6 +12,7 @@ func login(writer http.ResponseWriter, request *http.Request) {
 func signup(writer http.ResponseWriter, request *http.Request) {
 	generateHTML(writer, nil, "login.layout", "public.navbar", "signup")
 }
+
 
 func signupAccount(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
@@ -58,10 +58,8 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 
 func logout(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("_cookie")
-	fmt.Println("logout通過")
 	if err != http.ErrNoCookie {
 		session := data.Session{Uuid: cookie.Value}
-		fmt.Println("kokoka")
 		err = session.DeleteByUUID()
 	}
 	http.Redirect(w, r, "/", 302)

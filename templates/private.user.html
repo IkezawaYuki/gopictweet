@@ -1,0 +1,22 @@
+{{ define "content" }}
+    {{ .Nickname }}
+    <div class="contents display">
+        {{  range .Tweet }}
+            <div class="contents_tweet" style="background-image: url({{ .Image }})">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        選択
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" href="/tweet/read?id={{.Tweet.Uuid}}">詳細</a>
+                        <a class="dropdown-item" href="/tweet/edit?id={{.Tweet.Uuid}}">編集</a>
+                        <a class="dropdown-item" href="/tweet/delete?id={{.Tweet.Uuid}}">削除</a>
+                    </div>
+                </div>
+                <p>{{ .Text }}</p>
+            </div>
+        {{ end }}
+    </div>
+{{ end }}

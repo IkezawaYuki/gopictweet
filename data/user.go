@@ -126,12 +126,9 @@ func UserByEmail(email string) (user User, err error) {
 }
 
 func UserByUUID(uuid string) (user User, err error) {
-	statement := "select id, uuid, nickname, email, password, created_at from users where uuid = $1"
-	stmt, err := Db.Prepare(statement)
-	if err != nil {
-		return
-	}
-	err = stmt.QueryRow(uuid).Scan(&user.Id, &user.Uuid, &user.Email, &user.Password, &user.CreatedAt)
+	user = User{}
+	err = Db.QueryRow("select id, uuid, nickname, email, password, created_at from users where uuid = $1", uuid).
+		Scan(&user.Id, &user.Uuid, &user.Nickname, &user.Email, &user.Password, &user.CreatedAt)
 	return
 }
 

@@ -67,6 +67,11 @@ func (tweet *Tweet) Comments() (comments []Comment, err error) {
 	return
 }
 
+func (tweet *Tweet) Delete(uuid string)(err error){
+	_, err = Db.Exec("delete from tweets where uuid = $1", uuid)
+	return
+}
+
 func (user *User) ModifyTweet(uuid string, text string, image string)(err error){
 	_, err = Db.Exec("update tweets set text = $2, image = $3 where uuid = $1", uuid, text, image)
 	return
@@ -96,7 +101,7 @@ func (user *User) CreateComment(tweet Tweet, text string) (comment Comment, err 
 }
 
 func Tweets() (tweets []Tweet, err error) {
-	rows, err := Db.Query("select id, uuid, user_id, text, image, created_at from tweets")
+	rows, err := Db.Query("select id, uuid, user_id, text, image, created_at from tweets order by created_at DESC")
 	if err != nil {
 		return
 	}

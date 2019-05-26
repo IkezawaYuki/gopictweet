@@ -18,12 +18,14 @@ func main() {
 	mux.HandleFunc("/signout", logout)
 	mux.HandleFunc("/signup_account", signupAccount)
 	mux.HandleFunc("/authenticate", authenticate)
+	mux.HandleFunc("/user/mypage", mypage)
 
 	mux.HandleFunc("/tweet/new", newTweet)
 	mux.HandleFunc("/tweet/read", readTweet)
 	mux.HandleFunc("/tweet/create", createTweet)
 	mux.HandleFunc("/tweet/edit", editTweet)
 	mux.HandleFunc("/tweet/update", updateTweet)
+	mux.HandleFunc("/tweet/delete", deleteTweet)
 
 	mux.HandleFunc("/tweet/comment", createComment)
 

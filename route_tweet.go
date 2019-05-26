@@ -8,13 +8,10 @@ import (
 
 func newTweet(w http.ResponseWriter, r *http.Request) {
 	_, err := session(w, r)
-	fmt.Println("newTweet 通過")
 	if err != nil {
-		fmt.Println("nil")
 		http.Redirect(w, r, "/login", 302)
 	} else {
-		fmt.Println("elsew")
-		generateHTML(w, nil, "layout", "public.navbar", "new.tweet")
+		generateHTML(w, nil, "layout", "private.navbar", "new.tweet")
 	}
 }
 
@@ -31,6 +28,21 @@ func editTweet(w http.ResponseWriter, r *http.Request) {
 		} else {
 			generateHTML(w, &tweet, "layout", "private.navbar", "edit.tweet")
 		}
+	}
+}
+
+func deleteTweet(w http.ResponseWriter, r *http.Request) {
+	vals := r.URL.Query()
+	uuid := vals.Get("id")
+	tweet, err := data.TweetByUuid(uuid)
+	if err != nil {
+		fmt.Println("error is occured")
+	} else {
+		if err := tweet.Delete(tweet.Uuid); err != nil {
+			fmt.Println("cannot delete tweet")
+			panic(err)
+		}
+		http.Redirect(w, r, "/", 302)
 	}
 }
 

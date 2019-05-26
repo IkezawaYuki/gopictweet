@@ -15,7 +15,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		if err != nil{
 			generateHTML(w, tweets, "layout", "public.navbar", "index")
 		}else{
-			generateHTML(w, tweets, "layout", "private.navbar", "index")
+			generateHTML(w, tweets,"layout", "private.navbar", "index")
 		}
 	}
 }

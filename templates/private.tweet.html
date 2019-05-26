@@ -6,30 +6,33 @@
                     <a href="#"><span>{{ .User.Nickname }}</span></a>
                 </span>
             </div>
+
     </div>
 
-    <div class="panel panel-info">
-        <div class="panel-body">
 
-        <form class="form-inline" role="form" action="/tweet/comment" method="post">
-            <div class="form-control">
-                <textarea placeholder="コメントする" cols="100" name="text" rows="2"></textarea>
+        <div class="comment-box">
+            <div class="input_zone">
+                <form class="form-control" role="form" action="/tweet/comment" method="post">
+                    <textarea placeholder="コメントする" cols="100" name="text" rows="2"></textarea>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            <div>
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+            <div class="comments">
+                <h4>＜コメント一覧＞</h4>
+                {{ range .Comments }}
+                    <p>
+                        <strong><a href="/users/{{ .Comments.UserId }}">{{ .User.Nickname }}</a>：</strong>
+                        {{ .Comments.Text }}
+                    </p>
+                {{ end }}
             </div>
-        </form>
+        </div>
 
 
-        <div class="comments">
-            <h4>＜コメント一覧＞</h4>
-            {{ range .Comments }}
-            <p>
-                <strong><a href="/users/{{ .Comments.UserId }}">{{ .User.Nickname }}</a>：</strong>
-                {{ .Comments.Text }}
-            </p>
-            {{ end }}
-        </div>
-        </div>
-    </div>
+
+
+
+
+
 {{ end }}

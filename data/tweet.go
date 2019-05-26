@@ -67,6 +67,11 @@ func (tweet *Tweet) Comments() (comments []Comment, err error) {
 	return
 }
 
+func (user *User) ModifyTweet(uuid string, text string, image string)(err error){
+	_, err = Db.Exec("update tweets set text = $2, image = $3 where uuid = $1", uuid, text, image)
+	return
+}
+
 func (user *User) CreateTweet(text string, image string) (tweet Tweet, err error) {
 	fmt.Println("createTweet 通過")
 	statement := "insert into tweets (uuid, user_id, text, image, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, user_id, text, image, created_at"

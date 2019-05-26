@@ -18,6 +18,48 @@ func newTweet(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func editTweet(w http.ResponseWriter, r *http.Request) {
+	vals := r.URL.Query()
+	uuid := vals.Get("id")
+	tweet, err := data.TweetByUuid(uuid)
+	if err != nil {
+		fmt.Println("error is occured")
+	} else {
+		_, err = session(w, r)
+		if err != nil {
+			http.Redirect(w, r, "/login", 302)
+		} else {
+			generateHTML(w, &tweet, "layout", "private.navbar", "edit.tweet")
+		}
+	}
+}
+
+func updateTweet(w http.ResponseWriter, r *http.Request) {
+	ses, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/login", 302)
+	} else {
+		err = r.ParseForm()
+		if err != nil {
+			fmt.Println("cannnot parse")
+			panic(err)
+		}
+		user, err := ses.User()
+		if err != nil {
+			panic(err)
+		}
+		uuid := r.PostFormValue("uuid")
+		text := r.PostFormValue("text")
+		image := r.PostFormValue("image")
+		if err := user.ModifyTweet(uuid, text, image); err != nil {
+			fmt.Println("cannot uodate tweet")
+			panic(err)
+		}
+		http.Redirect(w, r, "/", 302)
+	}
+}
+
+
 func createTweet(w http.ResponseWriter, r *http.Request) {
 	ses, err := session(w, r)
 	if err != nil {

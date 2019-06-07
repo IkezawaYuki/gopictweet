@@ -13,6 +13,7 @@
         <div class="comment-box">
             <div class="input_zone">
                 <form class="form-control" role="form" action="/tweet/comment" method="post">
+                    <input type="hidden" name="uuid" value="{{ .Uuid }}">
                     <textarea placeholder="コメントする" cols="100" name="text" rows="2"></textarea>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

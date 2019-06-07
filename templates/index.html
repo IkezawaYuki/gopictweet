@@ -16,7 +16,7 @@
                 </div>
                 <p class="text">{{ .Text }}</p>
                 <span class="name">
-                    <a href="#"><span>投稿者:{{ .User.Nickname }}</span></a>
+                    <a href="/user/userpage?id={{.User.Uuid}}"><span>投稿者:{{ .User.Nickname }}</span></a>
                 </span>
             </div>
         {{ end }}

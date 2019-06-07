@@ -1,7 +1,6 @@
 package data
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -78,7 +77,6 @@ func (user *User) ModifyTweet(uuid string, text string, image string)(err error)
 }
 
 func (user *User) CreateTweet(text string, image string) (tweet Tweet, err error) {
-	fmt.Println("createTweet 通過")
 	statement := "insert into tweets (uuid, user_id, text, image, created_at) values ($1, $2, $3, $4, $5) returning id, uuid, user_id, text, image, created_at"
 	stmt, err := Db.Prepare(statement)
 	if err != nil {
@@ -96,7 +94,7 @@ func (user *User) CreateComment(tweet Tweet, text string) (comment Comment, err 
 		return
 	}
 	defer stmt.Close()
-	err = stmt.QueryRow(createUUID(), user.Id, tweet.Id, text, time.Now()).Scan(&comment.Id, &comment.Uuid, &comment.UserId, &comment.TweetId, &comment.CreatedAt)
+	err = stmt.QueryRow(createUUID(), user.Id, tweet.Id, text, time.Now()).Scan(&comment.Id, &comment.Uuid, &comment.UserId, &comment.TweetId,&comment.Text, &comment.CreatedAt)
 	return
 }
 
@@ -118,13 +116,8 @@ func Tweets() (tweets []Tweet, err error) {
 }
 
 func TweetByUuid(uuid string) (tweet Tweet, err error) {
-	statement := "select id, uuid, user_id, text, image, created_at from tweets where uuid = $1"
-	stmt, err := Db.Prepare(statement)
-	if err != nil {
-		return
-	}
-	defer stmt.Close()
-	err = stmt.QueryRow(uuid).Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
+	tweet = Tweet{}
+	err = Db.QueryRow("select id, uuid, user_id, text, image, created_at from tweets where uuid = $1", uuid).Scan(&tweet.Id, &tweet.Uuid, &tweet.UserId, &tweet.Text, &tweet.Image, &tweet.CreatedAt)
 	return
 }
 

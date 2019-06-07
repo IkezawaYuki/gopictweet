@@ -1,6 +1,6 @@
 {{ define "content" }}
     <div class="contents display">
-            <div class="contents_tweet" style="background-image: url({{ .Image }})">
+            <div class="contents_tweet" style="background-image: url({{ .tweet.Image }})">
                 <p>{{ .Text }}</p>
                 <span class="name">
                     <a href="#"><span>{{ .User.Nickname }}</span></a>
@@ -13,7 +13,7 @@
         <div class="comment-box">
             <div class="input_zone">
                 <form class="form-control" role="form" action="/tweet/comment" method="post">
-                    <input type="hidden" name="uuid" value="{{ .Uuid }}">
+                    <input type="hidden" name="uuid" value="{{ .tweet.Uuid }}">
                     <textarea placeholder="コメントする" cols="100" name="text" rows="2"></textarea>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -21,10 +21,10 @@
 
             <div class="comments">
                 <h4>＜コメント一覧＞</h4>
-                {{ range .Comments }}
+                {{ range .comment }}
                     <p>
-                        <strong><a href="/users/{{ .Comments.UserId }}">{{ .User.Nickname }}</a>：</strong>
-                        {{ .Comments.Text }}
+                        <strong><a href="/users/{{ .UserId }}">{{ .UserId }}</a>：</strong>
+                        {{ .Text }}
                     </p>
                 {{ end }}
             </div>

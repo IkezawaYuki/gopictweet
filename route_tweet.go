@@ -131,14 +131,17 @@ func readTweet(w http.ResponseWriter, r *http.Request) {
 	vals := r.URL.Query()
 	uuid := vals.Get("id")
 	tweet, err := data.TweetByUuid(uuid)
+	comments, err := tweet.Comments()
+	data := map[string]interface{}{"tweet":tweet, "comment":comments}
+	fmt.Println(data)
 	if err != nil {
 		fmt.Println("error is occured")
 	} else {
 		_, err = session(w, r)
 		if err != nil {
-			generateHTML(w, &tweet, "layout", "public.nuvbar", "public.tweet")
+			generateHTML(w, &data, "layout", "public.nuvbar", "public.tweet")
 		} else {
-			generateHTML(w, &tweet, "layout", "private.navbar", "private.tweet")
+			generateHTML(w, &data, "layout", "private.navbar", "private.tweet")
 		}
 	}
 }

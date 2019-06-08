@@ -12,23 +12,23 @@
 
         <div class="comment-box">
             <div class="input_zone">
-                <form class="form-control" role="form" action="/tweet/comment" method="post">
+                <form role="form" action="/tweet/comment" method="post">
                     <input type="hidden" name="uuid" value="{{ .tweet.Uuid }}">
                     <textarea placeholder="コメントする" cols="100" name="text" rows="2"></textarea>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-
+        </div>
             <div class="comments">
                 <h4>＜コメント一覧＞</h4>
                 {{ range .comment }}
                     <p>
-                        <strong><a href="/users/{{ .UserId }}">{{ .UserId }}</a>：</strong>
+                        <strong><a href="/users/{{ .UserId }}">{{ .User.Nickname }}</a>：</strong>
                         {{ .Text }}
                     </p>
                 {{ end }}
             </div>
-        </div>
+
 
 
 

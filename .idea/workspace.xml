@@ -2,39 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/domain/comment.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/session.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/tweet.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/api/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/api/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/datastore/mysql_db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/datastore/setup.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface/controllers/pictweet_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/css/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/css/layout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/css/tweet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/js/jquery-2.1.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/comment_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/pictweet_interactor.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/session_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/tweet_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/user_repository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/tweet.go" beforeDir="false" afterPath="$PROJECT_DIR$/data/tweet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/tweet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/tweet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/tweet_repository.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -30,6 +30,7 @@ func (comment *Comment) CreatedAtDate() string {
 	return comment.CreatedAt.Format("2006-01-02 15:04:05")
 }
 
+//count num comments
 func (tweet *Tweet) NumComment() (count int) {
 	statement := "select count(*) from comments where tweet_id = $1"
 	stmt, err := Db.Prepare(statement)

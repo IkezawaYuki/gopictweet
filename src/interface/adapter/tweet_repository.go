@@ -5,7 +5,6 @@ import (
 	"github.com/IkezawaYuki/gopictweet/src/domain"
 	"github.com/IkezawaYuki/gopictweet/src/usecase"
 	"github.com/jinzhu/gorm"
-	"time"
 )
 
 type tweetRepository struct {
@@ -45,17 +44,26 @@ func (tr *tweetRepository) Upsert(tweet *domain.Tweet) (result *domain.Tweet, er
 		Text:   tweet.Text,
 		Image:  tweet.Image,
 	}).FirstOrCreate(&tweet).Scan(&result).Error
+	if err != nil {
+		fmt.Printf("sql error: %v", err.Error())
+	}
 	return
 }
 
-func (tr *tweetRepository) Update(*domain.Tweet) (*domain.Tweet, error) {
-
-}
-
+// Delete tweetの削除
 func (tr *tweetRepository) Delete(tweet *domain.Tweet) error {
-	return tr.db.Delete(&tweet).Error
+	err := tr.db.Delete(&tweet).Error
+	if err != nil {
+		fmt.Printf("sql error: %v", err.Error())
+	}
+	return err
 }
 
-func (tr *tweetRepository) FindByUserID(int) (*domain.Tweet, error) {
-
+// FindByUserID ユーザーごとにtweetを取得
+func (tr *tweetRepository) FindByUserID(userID int) (tweet *domain.Tweet, err error) {
+	err = tr.db.Where("user_id = ?", userID).Find(&tweet).Error
+	if err != nil {
+		fmt.Printf("sql error: %v", err.Error())
+	}
+	return
 }

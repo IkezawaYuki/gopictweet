@@ -6,6 +6,6 @@ type Session struct {
 	ID        int
 	UuID      string
 	Email     string
-	UserID     int
+	UserID    int
 	CreatedAt time.Time
 }

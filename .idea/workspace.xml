@@ -3,9 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/tweet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/tweet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/tweet_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/comment_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/session_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/user_repository.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

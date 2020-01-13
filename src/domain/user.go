@@ -3,11 +3,11 @@ package domain
 import "time"
 
 type User struct {
-	Id        int
-	Uuid      string
-	Nickname  string
-	Email     string
-	Password  string
+	Id        int    `gorm:"id"`
+	Uuid      string `gorm:"uuid"`
+	Nickname  string `gorm:"nickname"`
+	Email     string `gorm:"email"`
+	Password  string `gorm:"password"`
 	CreatedAt time.Time
 }
 

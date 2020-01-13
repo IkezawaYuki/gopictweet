@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface/presenter/pictweet_presenter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/interactor/pictweet_interactor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/pictweet_presenter.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/comment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/session.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/comment_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/session_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/controllers/pictweet_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/controllers/pictweet_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/pictweet_interactor.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infrastructure/db" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -72,17 +71,17 @@
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/usecase/interactor" />
+      <recent name="$PROJECT_DIR$/src/usecase" />
+      <recent name="$PROJECT_DIR$/src/usecase/input" />
+      <recent name="$PROJECT_DIR$/src/interface/adapter" />
+      <recent name="$PROJECT_DIR$/src/domain" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/infrastructure/db" />
       <recent name="$PROJECT_DIR$/src/adapter" />
       <recent name="$PROJECT_DIR$/src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/interface/adapter" />
-      <recent name="$PROJECT_DIR$/src/usecase" />
-      <recent name="$PROJECT_DIR$/src/domain" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/domain/model" />
     </key>
   </component>
   <component name="RunManager">

@@ -4,7 +4,6 @@
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecase/interactor/pictweet_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/pictweet_interactor.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

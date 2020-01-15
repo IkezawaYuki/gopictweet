@@ -10,13 +10,15 @@ import (
 
 type TweetController struct {
 	tweetInteractor interactor.TweetInteractor
+	picInteractor   interactor.PictweetInteractor
 }
 
 func (t *TweetController) CreateTweet(c *gin.Context) {
 	tweet := domain.Tweet{}
 	c.Bind(&tweet)
+	ses, err := t.session(c)
 
-	// todo session確認
+	// todo tweetオブジェクトを作成
 
 	result, err := t.tweetInteractor.Create(&tweet)
 	if err != nil {
@@ -25,4 +27,16 @@ func (t *TweetController) CreateTweet(c *gin.Context) {
 	}
 	fmt.Println(result)
 	c.Redirect(http.StatusFound, "/")
+}
+
+func (t *TweetController) UpdateTweet(c *gin.Context) {
+
+}
+
+func (t *TweetController) session(c *gin.Context) (ses *domain.Session, err error) {
+	cookie, err := c.Cookie("_cookie")
+	if err == nil {
+		ses, err = t.picInteractor.CheckSession(cookie)
+	}
+	return nil, err
 }

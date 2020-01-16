@@ -3,11 +3,12 @@ package interactor
 import (
 	"github.com/IkezawaYuki/gopictweet/src/domain"
 	"github.com/IkezawaYuki/gopictweet/src/usecase"
+	"time"
 )
 
 type TweetInteractor interface {
 	Index() (*domain.Tweets, error)
-	Create(*domain.Tweet) (*domain.Tweet, error)
+	Create(int, string, string) (*domain.Tweet, error)
 	Update(*domain.Tweet) (*domain.Tweet, error)
 	Delete(*domain.Tweet) error
 }
@@ -30,8 +31,15 @@ func (t *tweetInteractor) Index() (*domain.Tweets, error) {
 	return tweets, nil
 }
 
-func (t *tweetInteractor) Create(tweet *domain.Tweet) (*domain.Tweet, error) {
-	tweet, err := t.tweetRepository.Upsert(tweet)
+func (t *tweetInteractor) Create(userID int, text string, image string) (*domain.Tweet, error) {
+	tweetObj := &domain.Tweet{
+		UuID:      "",
+		UserID:    userID,
+		Text:      text,
+		Image:     image,
+		CreatedAt: time.Now(),
+	}
+	tweet, err := t.tweetRepository.Upsert(tweetObj)
 	if err != nil {
 		return nil, err
 	}

@@ -7,6 +7,7 @@ import (
 
 type PictweetInteractor interface {
 	CheckSession(string) (*domain.Session, error)
+	FindUserBySession(session *domain.Session) (*domain.User, error)
 }
 
 type pictweetInteractor struct {
@@ -20,4 +21,9 @@ func (pi *pictweetInteractor) CheckSession(uuid string) (*domain.Session, error)
 		return nil, err
 	}
 	return session, nil
+}
+
+func (pi *pictweetInteractor) FindUserBySession(session domain.Session) (*domain.User, error) {
+	sessionID := session.UuID
+	return pi.userRepository.FindBySessionID(sessionID)
 }

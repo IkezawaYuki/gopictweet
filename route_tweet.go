@@ -64,13 +64,12 @@ func updateTweet(w http.ResponseWriter, r *http.Request) {
 		text := r.PostFormValue("text")
 		image := r.PostFormValue("image")
 		if err := user.ModifyTweet(uuid, text, image); err != nil {
-			fmt.Println("cannot uodate tweet")
+			fmt.Println("cannot update tweet")
 			panic(err)
 		}
 		http.Redirect(w, r, "/", 302)
 	}
 }
-
 
 func createTweet(w http.ResponseWriter, r *http.Request) {
 	ses, err := session(w, r)
@@ -96,11 +95,11 @@ func createTweet(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func createComment(w http.ResponseWriter, r *http.Request){
+func createComment(w http.ResponseWriter, r *http.Request) {
 	sess, err := session(w, r)
 	if err != nil {
 		http.Redirect(w, r, "/login", 302)
-	}else{
+	} else {
 		err := r.ParseForm()
 		if err != nil {
 			panic(err)
@@ -126,13 +125,12 @@ func createComment(w http.ResponseWriter, r *http.Request){
 	}
 }
 
-
 func readTweet(w http.ResponseWriter, r *http.Request) {
 	vals := r.URL.Query()
 	uuid := vals.Get("id")
 	tweet, err := data.TweetByUuid(uuid)
 	comments, err := tweet.Comments()
-	data := map[string]interface{}{"tweet":tweet, "comment":comments}
+	data := map[string]interface{}{"tweet": tweet, "comment": comments}
 	fmt.Println(data)
 	if err != nil {
 		fmt.Println("error is occured")

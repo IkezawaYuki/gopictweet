@@ -9,4 +9,5 @@ type UserRepository interface {
 	Update(*domain.User) (*domain.User, error)
 	Delete(*domain.User) error
 	DeleteAll() error
+	FindBySessionID(string) (*domain.User, error)
 }

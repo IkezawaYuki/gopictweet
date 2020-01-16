@@ -64,3 +64,8 @@ func (ur *userRepository) DeleteAll() (err error) {
 	}
 	return
 }
+
+func (ur *userRepository) FindBySessionID(sessionID string) (user *domain.User, err error) {
+	err = ur.db.Where("session_id = ?", sessionID).Find(&user).Error
+	return
+}

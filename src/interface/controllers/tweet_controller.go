@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/IkezawaYuki/gopictweet/src/domain"
 	"github.com/IkezawaYuki/gopictweet/src/usecase/interactor"
 	"github.com/gin-gonic/gin"
@@ -17,16 +16,22 @@ func (t *TweetController) CreateTweet(c *gin.Context) {
 	tweet := domain.Tweet{}
 	c.Bind(&tweet)
 	ses, err := t.session(c)
-
-	// todo tweetオブジェクトを作成
-
-	result, err := t.tweetInteractor.Create(&tweet)
 	if err != nil {
-		fmt.Println(err)
-		c.Redirect(http.StatusFound, "/")
+		c.Redirect(http.StatusFound, "/login")
+		return
+	} else {
+		user, err := t.picInteractor.FindUserBySession(ses)
+		if err != nil {
+			panic(err)
+		}
+		text := c.PostForm("text")
+		image := c.PostForm("image")
+		if _, err := t.tweetInteractor.Create(user.Id, text, image); err != nil {
+			panic(err)
+		}
+		c.Redirect(http.StatusCreated, "/")
+		return
 	}
-	fmt.Println(result)
-	c.Redirect(http.StatusFound, "/")
 }
 
 func (t *TweetController) UpdateTweet(c *gin.Context) {

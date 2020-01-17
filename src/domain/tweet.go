@@ -2,6 +2,7 @@ package domain
 
 import "time"
 
+// gorm のユニークkey をUuidにせよ
 type Tweet struct {
 	ID        int       `gorm:"id"`
 	UuID      string    `gorm:"uuid"`

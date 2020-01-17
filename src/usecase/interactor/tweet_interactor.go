@@ -8,8 +8,9 @@ import (
 
 type TweetInteractor interface {
 	Index() (*domain.Tweets, error)
+	FindByUUID(string) (*domain.Tweet, error)
 	Create(int, string, string) (*domain.Tweet, error)
-	Update(*domain.Tweet) (*domain.Tweet, error)
+	Update(int, string, string, string) (*domain.Tweet, error)
 	Delete(*domain.Tweet) error
 }
 
@@ -21,6 +22,14 @@ func NewTweetInteractor(tweetRepo usecase.TweetRepository) TweetInteractor {
 	return &tweetInteractor{
 		tweetRepository: tweetRepo,
 	}
+}
+
+func (t *tweetInteractor) FindByUUID(uuid string) (*domain.Tweet, error) {
+	tweet, err := t.tweetRepository.FindByUUID(uuid)
+	if err != nil {
+		return nil, err
+	}
+	return tweet, nil
 }
 
 func (t *tweetInteractor) Index() (*domain.Tweets, error) {
@@ -46,8 +55,15 @@ func (t *tweetInteractor) Create(userID int, text string, image string) (*domain
 	return tweet, nil
 }
 
-func (t *tweetInteractor) Update(tweet *domain.Tweet) (*domain.Tweet, error) {
-	tweet, err := t.tweetRepository.Upsert(tweet)
+func (t *tweetInteractor) Update(userID int, uuid string, text string, image string) (*domain.Tweet, error) {
+	tweetObj := &domain.Tweet{
+		UuID:      uuid,
+		UserID:    userID,
+		Text:      text,
+		Image:     image,
+		CreatedAt: time.Time{},
+	}
+	tweet, err := t.tweetRepository.Upsert(tweetObj)
 	if err != nil {
 		return nil, err
 	}

@@ -8,4 +8,5 @@ type TweetRepository interface {
 	Upsert(*domain.Tweet) (*domain.Tweet, error)
 	Delete(*domain.Tweet) error
 	FindByUserID(int) (*domain.Tweet, error)
+	FindByUUID(string) (*domain.Tweet, error)
 }

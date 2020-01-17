@@ -67,3 +67,11 @@ func (tr *tweetRepository) FindByUserID(userID int) (tweet *domain.Tweet, err er
 	}
 	return
 }
+
+func (tr *tweetRepository) FindByUUID(uuid string) (tweet *domain.Tweet, err error) {
+	err = tr.db.Where("uuid = ?", uuid).Find(tweet).Error
+	if err != nil {
+		fmt.Printf("sql error: %v", err.Error())
+	}
+	return
+}

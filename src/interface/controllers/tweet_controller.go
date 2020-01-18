@@ -19,19 +19,19 @@ func (t *TweetController) CreateTweet(c *gin.Context) {
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 		return
-	} else {
-		user, err := t.picInteractor.FindUserBySession(ses)
-		if err != nil {
-			panic(err)
-		}
-		text := c.PostForm("text")
-		image := c.PostForm("image")
-		if _, err := t.tweetInteractor.Create(user.Id, text, image); err != nil {
-			panic(err)
-		}
-		c.Redirect(http.StatusCreated, "/")
-		return
 	}
+	user, err := t.picInteractor.FindUserBySession(ses)
+	if err != nil {
+		panic(err)
+	}
+	text := c.PostForm("text")
+	image := c.PostForm("image")
+	if _, err := t.tweetInteractor.Create(user.Id, text, image); err != nil {
+		panic(err)
+	}
+	c.Redirect(http.StatusCreated, "/")
+	return
+
 }
 
 // UpdateTweet ツイートの更新
@@ -40,20 +40,20 @@ func (t *TweetController) UpdateTweet(c *gin.Context) {
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 		return
-	} else {
-		user, err := t.picInteractor.FindUserBySession(ses)
-		if err != nil {
-			panic(err)
-		}
-		uuid := c.PostForm("uuid")
-		text := c.PostForm("text")
-		image := c.PostForm("image")
-		if _, err := t.tweetInteractor.Update(user.Id, uuid, text, image); err != nil {
-			panic(err)
-		}
-		c.Redirect(http.StatusCreated, "/")
-		return
 	}
+	user, err := t.picInteractor.FindUserBySession(ses)
+	if err != nil {
+		panic(err)
+	}
+	uuid := c.PostForm("uuid")
+	text := c.PostForm("text")
+	image := c.PostForm("image")
+	if _, err := t.tweetInteractor.Update(user.Id, uuid, text, image); err != nil {
+		panic(err)
+	}
+	c.Redirect(http.StatusCreated, "/")
+	return
+
 }
 
 func (t *TweetController) NewTweet(c *gin.Context) {
@@ -62,6 +62,7 @@ func (t *TweetController) NewTweet(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/login")
 	} else {
 		// htmlの生成
+
 	}
 }
 
@@ -70,15 +71,14 @@ func (t *TweetController) EditTweet(c *gin.Context) {
 	tweet, err := t.tweetInteractor.FindByUUID(uuid)
 	if err != nil {
 
-	} else {
-		_, err = t.session(c)
-		if err != nil {
-			c.Redirect(http.StatusFound, "/login")
-		} else {
-			fmt.Println(tweet)
-			// todo htmlの生成
-		}
+		// todo メッセージ：tweetが見つかりません。
 	}
+	_, err = t.session(c)
+	if err != nil {
+		c.Redirect(http.StatusFound, "/login")
+	}
+	fmt.Println(tweet)
+
 }
 
 func (t *TweetController) session(c *gin.Context) (ses *domain.Session, err error) {

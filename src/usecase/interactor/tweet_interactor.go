@@ -16,6 +16,7 @@ type TweetInteractor interface {
 
 type tweetInteractor struct {
 	tweetRepository usecase.TweetRepository
+	plesenter
 }
 
 func NewTweetInteractor(tweetRepo usecase.TweetRepository) TweetInteractor {

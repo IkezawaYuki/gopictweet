@@ -10,6 +10,9 @@ var (
 )
 
 func Run() {
+
+	router.LoadHTMLGlob("src/infrastructure/api")
+
 	router.GET("/ping", controllers.Ping)
 
 	router.Run(":8081")

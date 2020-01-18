@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/edit.tweet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/login.layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/new.tweet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/private.navbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/private.tweet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/private.user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/public.navbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/public.tweet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/public.user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/view/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/tweet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/tweet.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/presenter/pictweet_presenter.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/tweet_repository.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +67,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infrastructure/view" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -75,6 +88,7 @@
       <recent name="$PROJECT_DIR$/src/domain" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/infrastructure/view" />
       <recent name="$PROJECT_DIR$/src/infrastructure/db" />
       <recent name="$PROJECT_DIR$/src/adapter" />
       <recent name="$PROJECT_DIR$/src" />

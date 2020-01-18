@@ -71,14 +71,17 @@ func (t *TweetController) EditTweet(c *gin.Context) {
 	tweet, err := t.tweetInteractor.FindByUUID(uuid)
 	if err != nil {
 
-		// todo メッセージ：tweetが見つかりません。
+		// todo メッセージ：「tweetが見つかりません。」のテンプレート
 	}
 	_, err = t.session(c)
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 	}
 	fmt.Println(tweet)
-
+	c.HTML(http.StatusOK, "editTweet", gin.H{
+		"test":  "aa",
+		"tweet": tweet,
+	})
 }
 
 func (t *TweetController) session(c *gin.Context) (ses *domain.Session, err error) {

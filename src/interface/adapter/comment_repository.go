@@ -1,8 +1,8 @@
 package adapter
 
 import (
-	"github.com/IkezawaYuki/gopictweet/src/domain"
-	"github.com/IkezawaYuki/gopictweet/src/usecase"
+	"github.com/IkezawaYuki/gopictweet/src/domain/model"
+	"github.com/IkezawaYuki/gopictweet/src/domain/repository"
 	"github.com/jinzhu/gorm"
 	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
 )
@@ -12,11 +12,11 @@ type commentRepository struct {
 }
 
 // NewCommentRepository di
-func NewCommentRepository(db *gorm.DB) usecase.CommentRepository {
+func NewCommentRepository(db *gorm.DB) repository.CommentRepository {
 	return &commentRepository{db: db}
 }
 
-func (cr *commentRepository) FindAll() (comments *domain.Comments, err error) {
+func (cr *commentRepository) FindAll() (comments *model.Comments, err error) {
 	err = cr.db.Find(&comments).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err)
@@ -24,7 +24,7 @@ func (cr *commentRepository) FindAll() (comments *domain.Comments, err error) {
 	return
 }
 
-func (cr *commentRepository) FindByUserID(userID int) (comments *domain.Comments, err error) {
+func (cr *commentRepository) FindByUserID(userID int) (comments *model.Comments, err error) {
 	err = cr.db.Where("user_id", userID).Find(&comments).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err)
@@ -32,7 +32,7 @@ func (cr *commentRepository) FindByUserID(userID int) (comments *domain.Comments
 	return
 }
 
-func (cr *commentRepository) FindByTweet(tweetID int) (comments *domain.Comments, err error) {
+func (cr *commentRepository) FindByTweet(tweetID int) (comments *model.Comments, err error) {
 	err = cr.db.Where("tweet_id", tweetID).Find(&comments).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err)
@@ -40,8 +40,8 @@ func (cr *commentRepository) FindByTweet(tweetID int) (comments *domain.Comments
 	return
 }
 
-func (cr *commentRepository) Upsert(comment *domain.Comment) (result *domain.Comment, err error) {
-	err = cr.db.Where(domain.Comment{ID: comment.ID}).Attrs(domain.Comment{
+func (cr *commentRepository) Upsert(comment *model.Comment) (result *model.Comment, err error) {
+	err = cr.db.Where(model.Comment{ID: comment.ID}).Attrs(model.Comment{
 		UuID:    comment.UuID,
 		UserID:  comment.UserID,
 		TweetID: comment.TweetID,
@@ -53,7 +53,7 @@ func (cr *commentRepository) Upsert(comment *domain.Comment) (result *domain.Com
 	return
 }
 
-func (cr *commentRepository) Delete(comment *domain.Comment) (err error) {
+func (cr *commentRepository) Delete(comment *model.Comment) (err error) {
 	err = cr.db.Delete(&comment).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err)

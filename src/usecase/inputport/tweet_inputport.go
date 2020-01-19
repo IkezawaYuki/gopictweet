@@ -1,0 +1,11 @@
+package inputport
+
+import "github.com/IkezawaYuki/gopictweet/src/domain/model"
+
+type TweetInputport interface {
+	Index() (*model.Tweets, error)
+	FindByUUID(string) (*model.Tweet, error)
+	Create(int, string, string) (*model.Tweet, error)
+	Update(int, string, string, string) (*model.Tweet, error)
+	Delete(*model.Tweet) error
+}

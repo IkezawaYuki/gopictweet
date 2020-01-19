@@ -2,8 +2,8 @@ package adapter
 
 import (
 	"fmt"
-	"github.com/IkezawaYuki/gopictweet/src/domain"
-	"github.com/IkezawaYuki/gopictweet/src/usecase"
+	"github.com/IkezawaYuki/gopictweet/src/domain/model"
+	"github.com/IkezawaYuki/gopictweet/src/domain/repository"
 	"github.com/jinzhu/gorm"
 )
 
@@ -11,11 +11,11 @@ type sessionRepository struct {
 	db *gorm.DB
 }
 
-func NewSessionRepository(db *gorm.DB) usecase.SessionRepository {
+func NewSessionRepository(db *gorm.DB) repository.SessionRepository {
 	return &sessionRepository{db: db}
 }
 
-func (sr *sessionRepository) Create(session *domain.Session) (*domain.Session, error) {
+func (sr *sessionRepository) Create(session *model.Session) (*model.Session, error) {
 	err := sr.db.Create(&session).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err.Error())
@@ -24,8 +24,8 @@ func (sr *sessionRepository) Create(session *domain.Session) (*domain.Session, e
 	return session, nil
 }
 
-func (sr *sessionRepository) FindByUserID(userID string) (*domain.Session, error) {
-	var session domain.Session
+func (sr *sessionRepository) FindByUserID(userID string) (*model.Session, error) {
+	var session model.Session
 	err := sr.db.Where("user_id = ?", userID).Find(&session).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err.Error())
@@ -35,7 +35,7 @@ func (sr *sessionRepository) FindByUserID(userID string) (*domain.Session, error
 }
 
 func (sr *sessionRepository) Check(uuid string) (bool, error) {
-	var session domain.Session
+	var session model.Session
 	if err := sr.db.Where("uuid = ?", uuid).Find(&session).Error; err != nil {
 		fmt.Printf("sql error: %v", err.Error())
 		return false, nil
@@ -43,7 +43,7 @@ func (sr *sessionRepository) Check(uuid string) (bool, error) {
 	return true, nil
 }
 
-func (sr *sessionRepository) Delete(session *domain.Session) error {
+func (sr *sessionRepository) Delete(session *model.Session) error {
 	if err := sr.db.Delete(&session).Error; err != nil {
 		fmt.Printf("sql error: %v", err.Error())
 		return err

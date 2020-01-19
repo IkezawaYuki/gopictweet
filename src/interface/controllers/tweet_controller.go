@@ -2,25 +2,48 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/IkezawaYuki/gopictweet/src/domain"
+	"github.com/IkezawaYuki/gopictweet/src/domain/model"
+	"github.com/IkezawaYuki/gopictweet/src/interface/adapter"
+	"github.com/IkezawaYuki/gopictweet/src/usecase/inputport"
 	"github.com/IkezawaYuki/gopictweet/src/usecase/interactor"
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 	"net/http"
 )
 
-type TweetController struct {
-	tweetInteractor interactor.TweetInteractor
-	picInteractor   interactor.PictweetInteractor
+type PictweetController struct {
+	tweetInteractor   inputport.TweetInputport
+	userInteractor    inputport.UserInputport
+	commentInteractor inputport.CommentInputport
+	// todo プレゼンターの追加が必要か。
 }
 
+func NewPicTweetController(handler *gorm.DB) *PictweetController {
+	return &PictweetController{
+		tweetInteractor: interactor.NewTweetInteractor(
+			adapter.NewTweetRepository(handler),
+		),
+		userInteractor: interactor.NewUserInteractor(
+			adapter.NewSessionRepository(handler),
+			adapter.NewUsersRepository(handler),
+		),
+		commentInteractor: interactor.NewCommentInteractor(
+			adapter.NewCommentRepository(handler),
+		),
+	}
+}
+
+/*
+ツイート機能
+*/
 // CreateTweet ツイートの作成
-func (t *TweetController) CreateTweet(c *gin.Context) {
+func (t *PictweetController) CreateTweet(c *gin.Context) {
 	ses, err := t.session(c)
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	user, err := t.picInteractor.FindUserBySession(ses)
+	user, err := t.userInteractor.FindUserBySession(ses)
 	if err != nil {
 		panic(err)
 	}
@@ -35,13 +58,13 @@ func (t *TweetController) CreateTweet(c *gin.Context) {
 }
 
 // UpdateTweet ツイートの更新
-func (t *TweetController) UpdateTweet(c *gin.Context) {
+func (t *PictweetController) UpdateTweet(c *gin.Context) {
 	ses, err := t.session(c)
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	user, err := t.picInteractor.FindUserBySession(ses)
+	user, err := t.userInteractor.FindUserBySession(ses)
 	if err != nil {
 		panic(err)
 	}
@@ -56,21 +79,21 @@ func (t *TweetController) UpdateTweet(c *gin.Context) {
 
 }
 
-func (t *TweetController) NewTweet(c *gin.Context) {
+// NewTweet ツイート投稿画面
+func (t *PictweetController) NewTweet(c *gin.Context) {
 	_, err := t.session(c)
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
-	} else {
-		// htmlの生成
-
+		return
 	}
+	c.HTML(http.StatusOK, "newTweet", nil)
 }
 
-func (t *TweetController) EditTweet(c *gin.Context) {
+// EditTweet ツイート編集画面
+func (t *PictweetController) EditTweet(c *gin.Context) {
 	uuid := c.Query("id")
 	tweet, err := t.tweetInteractor.FindByUUID(uuid)
 	if err != nil {
-
 		// todo メッセージ：「tweetが見つかりません。」のテンプレート
 	}
 	_, err = t.session(c)
@@ -84,10 +107,68 @@ func (t *TweetController) EditTweet(c *gin.Context) {
 	})
 }
 
-func (t *TweetController) session(c *gin.Context) (ses *domain.Session, err error) {
+// ReadTweet ツイート詳細画面
+func (t *PictweetController) ReadTweet(c *gin.Context) {
+	uuid := c.Query("id")
+	tweet, err := t.tweetInteractor.FindByUUID(uuid)
+	if err != nil {
+		// todo tweetが見つかりません的なページに飛ぶ
+	}
+	comments, err := t.commentInteractor.FindByTweetID(tweet.ID)
+	if err != nil {
+		// todo ここはnot found のエラーを考える。
+	}
+	c.HTML(http.StatusOK, "readTweet", gin.H{
+		"tweet":    tweet,
+		"comments": comments,
+	})
+}
+
+// DeleteTweet ツイート削除
+func (t *PictweetController) DeleteTweet(c *gin.Context) {
+	uuid := c.Query("id")
+	tweet, err := t.tweetInteractor.FindByUUID(uuid)
+	if err != nil {
+		// todo tweetはすでに削除されています的なメッセージ
+	}
+	err = t.tweetInteractor.Delete(tweet)
+	if err != nil {
+		// todo 削除に失敗しました的なメッセージ
+	}
+	c.Redirect(http.StatusFound, "/")
+}
+
+/*
+コメント機能
+*/
+
+// CreateComment コメント作成
+func (t *PictweetController) CreateComment(c *gin.Context) {
+	ses, err := t.session(c)
+	if err != nil {
+		c.Redirect(http.StatusFound, "/")
+		return
+	}
+	user, err := t.userInteractor.FindUserBySession(ses)
+	uuid := c.PostForm("uuid")
+	text := c.PostForm("text")
+
+	tweet, err := t.tweetInteractor.FindByUUID(uuid)
+	if err != nil {
+		// todo このツイートは削除されました的なメッセージ。
+	}
+	_, err = t.commentInteractor.Create(user.Id, tweet.ID, text)
+	if err != nil {
+		// todo
+	}
+	url := fmt.Sprintf("/tweet/read?id=%s", uuid)
+	c.Redirect(http.StatusFound, url)
+}
+
+func (t *PictweetController) session(c *gin.Context) (ses *model.Session, err error) {
 	cookie, err := c.Cookie("_cookie")
 	if err == nil {
-		ses, err = t.picInteractor.CheckSession(cookie)
+		ses, err = t.userInteractor.CheckSession(cookie)
 	}
 	return nil, err
 }

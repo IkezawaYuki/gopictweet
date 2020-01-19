@@ -2,9 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/cmd/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/service/encrypt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/inputport/comment_inputport.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/inputport/tweet_inputport.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/inputport/user_inputport.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecase/interactor/user_interactor.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/tweet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/tweet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infrastructure/api/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/comment_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/pictweet_interactor.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/pictweet_presenter.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/session_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/tweet_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/user_repository.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,11 +41,6 @@
         <option value="Go File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>上</find>
-    </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.13.1/libexec" />
   <component name="Git.Settings">
@@ -65,11 +82,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/usecase/interactor" />
       <recent name="$PROJECT_DIR$/src/usecase" />
+      <recent name="$PROJECT_DIR$/src/domain/model" />
+      <recent name="$PROJECT_DIR$/src/domain/repository" />
+      <recent name="$PROJECT_DIR$/src/usecase/interactor" />
       <recent name="$PROJECT_DIR$/src/usecase/input" />
-      <recent name="$PROJECT_DIR$/src/interface/adapter" />
-      <recent name="$PROJECT_DIR$/src/domain" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/infrastructure/view" />

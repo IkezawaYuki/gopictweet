@@ -69,3 +69,8 @@ func (ur *userRepository) FindBySessionID(sessionID string) (user *model.User, e
 	err = ur.db.Where("session_id = ?", sessionID).Find(&user).Error
 	return
 }
+
+func (ur *userRepository) FindByUUID(uuid string) (user *model.User, err error) {
+	err = ur.db.Where("uuid = ?", uuid).Find(&user).Error
+	return
+}

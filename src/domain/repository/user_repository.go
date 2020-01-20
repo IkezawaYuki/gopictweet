@@ -12,4 +12,5 @@ type UserRepository interface {
 	Delete(*model.User) error
 	DeleteAll() error
 	FindBySessionID(string) (*model.User, error)
+	FindByUUID(string) (*model.User, error)
 }

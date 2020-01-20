@@ -43,7 +43,8 @@ func (t *PictweetController) CreateTweet(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	user, err := t.userInteractor.FindUserBySession(ses)
+
+	user, err := t.userInteractor.FindBySession(ses)
 	if err != nil {
 		panic(err)
 	}
@@ -52,6 +53,7 @@ func (t *PictweetController) CreateTweet(c *gin.Context) {
 	if _, err := t.tweetInteractor.Create(user.Id, text, image); err != nil {
 		panic(err)
 	}
+
 	c.Redirect(http.StatusCreated, "/")
 	return
 
@@ -64,7 +66,7 @@ func (t *PictweetController) UpdateTweet(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	user, err := t.userInteractor.FindUserBySession(ses)
+	user, err := t.userInteractor.FindBySession(ses)
 	if err != nil {
 		panic(err)
 	}
@@ -91,15 +93,16 @@ func (t *PictweetController) NewTweet(c *gin.Context) {
 
 // EditTweet ツイート編集画面
 func (t *PictweetController) EditTweet(c *gin.Context) {
+	_, err := t.session(c)
+	if err != nil {
+		c.Redirect(http.StatusFound, "/login")
+	}
 	uuid := c.Query("id")
 	tweet, err := t.tweetInteractor.FindByUUID(uuid)
 	if err != nil {
 		// todo メッセージ：「tweetが見つかりません。」のテンプレート
 	}
-	_, err = t.session(c)
-	if err != nil {
-		c.Redirect(http.StatusFound, "/login")
-	}
+
 	fmt.Println(tweet)
 	c.HTML(http.StatusOK, "editTweet", gin.H{
 		"test":  "aa",
@@ -149,7 +152,7 @@ func (t *PictweetController) CreateComment(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/")
 		return
 	}
-	user, err := t.userInteractor.FindUserBySession(ses)
+	user, err := t.userInteractor.FindBySession(ses)
 	uuid := c.PostForm("uuid")
 	text := c.PostForm("text")
 

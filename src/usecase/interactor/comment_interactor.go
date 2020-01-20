@@ -3,6 +3,7 @@ package interactor
 import (
 	"github.com/IkezawaYuki/gopictweet/src/domain/model"
 	"github.com/IkezawaYuki/gopictweet/src/domain/repository"
+	"github.com/IkezawaYuki/gopictweet/src/domain/service"
 	"github.com/IkezawaYuki/gopictweet/src/usecase/inputport"
 	"time"
 )
@@ -25,7 +26,7 @@ func (c *commentInteractor) Index() (*model.Comments, error) {
 
 func (c *commentInteractor) Create(userID int, tweetID int, text string) (*model.Comment, error) {
 	comment := &model.Comment{
-		UuID:      "", // todo createUUID
+		UuID:      service.CreateUUID(),
 		UserID:    userID,
 		TweetID:   tweetID,
 		Text:      text,

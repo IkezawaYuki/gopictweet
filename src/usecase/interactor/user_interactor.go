@@ -26,7 +26,11 @@ func (pi *userInteractor) CheckSession(uuid string) (*model.Session, error) {
 	return session, nil
 }
 
-func (pi *userInteractor) FindUserBySession(session *model.Session) (*model.User, error) {
+func (pi *userInteractor) FindBySession(session *model.Session) (*model.User, error) {
 	sessionID := session.UuID
 	return pi.userRepository.FindBySessionID(sessionID)
+}
+
+func (pi *userInteractor) FindByUUID(uuid string) (*model.User, error) {
+	return pi.userRepository.FindByUUID(uuid)
 }

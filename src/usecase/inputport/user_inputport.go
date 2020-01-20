@@ -4,5 +4,6 @@ import "github.com/IkezawaYuki/gopictweet/src/domain/model"
 
 type UserInputport interface {
 	CheckSession(string) (*model.Session, error)
-	FindUserBySession(session *model.Session) (*model.User, error)
+	FindBySession(session *model.Session) (*model.User, error)
+	FindByUUID(string) (*model.User, error)
 }

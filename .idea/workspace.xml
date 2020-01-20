@@ -2,31 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46842a9-99cf-4676-a7bc-a71f8e25fe95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cmd/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/service/encrypt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/inputport/comment_inputport.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/inputport/tweet_inputport.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/inputport/user_inputport.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecase/interactor/user_interactor.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/comment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/session.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/tweet.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/tweet.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/comment_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/session_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/tweet_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/repository/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/user_repository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/adapter/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/controllers/pictweet_controller.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/controllers/tweet_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/comment_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/comment_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/inputport/user_inputport.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/inputport/user_inputport.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/comment_interactor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/pictweet_interactor.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/tweet_interactor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/pictweet_presenter.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/session_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/tweet_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/tweet_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecase/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/repository/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecase/interactor/user_interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecase/interactor/user_interactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/edit.tweet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.layout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/new.tweet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/private.navbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/private.tweet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/private.user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/public.navbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/public.tweet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/public.user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

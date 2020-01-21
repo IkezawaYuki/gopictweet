@@ -1,10 +1,10 @@
 package adapter
 
 import (
+	"fmt"
 	"github.com/IkezawaYuki/gopictweet/src/domain/model"
 	"github.com/IkezawaYuki/gopictweet/src/domain/repository"
 	"github.com/jinzhu/gorm"
-	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
 )
 
 type commentRepository struct {

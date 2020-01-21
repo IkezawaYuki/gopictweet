@@ -96,16 +96,17 @@ func (t *PictweetController) EditTweet(c *gin.Context) {
 	_, err := t.session(c)
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
+		return
 	}
 	uuid := c.Query("id")
 	tweet, err := t.tweetInteractor.FindByUUID(uuid)
 	if err != nil {
 		// todo メッセージ：「tweetが見つかりません。」のテンプレート
+		return
 	}
 
 	fmt.Println(tweet)
 	c.HTML(http.StatusOK, "editTweet", gin.H{
-		"test":  "aa",
 		"tweet": tweet,
 	})
 }

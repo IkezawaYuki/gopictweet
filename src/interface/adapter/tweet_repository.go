@@ -16,7 +16,7 @@ func NewTweetRepository(db *gorm.DB) repository.TweetRepository {
 }
 
 // FindAll tweet全取得
-func (tr *tweetRepository) FindAll() (tweets *model.Tweets, err error) {
+func (tr *tweetRepository) FindAll() (tweets []model.Tweet, err error) {
 	err = tr.db.Find(&tweets).Error
 	if err != nil {
 		fmt.Printf("sql error: %v", err.Error())

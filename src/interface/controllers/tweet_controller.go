@@ -142,6 +142,25 @@ func (t *PictweetController) DeleteTweet(c *gin.Context) {
 	c.Redirect(http.StatusFound, "/")
 }
 
+func (t *PictweetController) Index(c *gin.Context) {
+	tweets, err := t.tweetInteractor.Index()
+	if err != nil {
+		return
+	}
+	_, err = t.session(c)
+	if err != nil {
+		c.JSON(http.StatusOK, tweets)
+		//c.HTML(http.StatusOK, "Index", gin.H{
+		//	"tweets": tweets,
+		//})
+		return
+	}
+	c.HTML(http.StatusOK, "Index_Private", gin.H{
+		"tweets": tweets,
+	})
+
+}
+
 /*
 コメント機能
 */

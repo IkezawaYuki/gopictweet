@@ -5,7 +5,7 @@ import (
 )
 
 type TweetRepository interface {
-	FindAll() (*model.Tweets, error)
+	FindAll() ([]model.Tweet, error)
 	CountNumComment(int) (int, error)
 	Upsert(*model.Tweet) (*model.Tweet, error)
 	Delete(*model.Tweet) error

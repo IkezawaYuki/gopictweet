@@ -26,7 +26,7 @@ func (t *tweetInteractor) FindByUUID(uuid string) (*model.Tweet, error) {
 	return tweet, nil
 }
 
-func (t *tweetInteractor) Index() (*model.Tweets, error) {
+func (t *tweetInteractor) Index() ([]model.Tweet, error) {
 	tweets, err := t.tweetRepository.FindAll()
 	if err != nil {
 		return nil, err

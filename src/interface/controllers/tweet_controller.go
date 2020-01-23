@@ -149,10 +149,10 @@ func (t *PictweetController) Index(c *gin.Context) {
 	}
 	_, err = t.session(c)
 	if err != nil {
-		c.JSON(http.StatusOK, tweets)
-		//c.HTML(http.StatusOK, "Index", gin.H{
-		//	"tweets": tweets,
-		//})
+		// c.JSON(http.StatusOK, tweets)
+		c.HTML(http.StatusOK, "article", gin.H{
+			"tweets": tweets,
+		})
 		return
 	}
 	c.HTML(http.StatusOK, "Index_Private", gin.H{

@@ -14,14 +14,10 @@ var (
 )
 
 func Run() {
-
+	router.Static("/assets", "./public")
 	router.LoadHTMLGlob("src/infrastructure/view/*.html")
 
-	templates := multitemplate.New()
-	path := "src/infrastructure/view/"
-	templates.AddFromFiles("editTweet", path+"layout.html", path+"private.navbar.html", path+"edit.tweet.html")
-	templates.AddFromFiles("Index", path+"layout.html", path+"public.navbar.html", path+"index.html")
-	templates.AddFromFiles("Index_Private", path+"layout.html", path+"private.navbar.html", path+"index.html")
+	router.HTMLRender = createMyRender()
 
 	handler, err := gorm.Open("mysql", "root:@/pictweet?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
@@ -34,4 +30,16 @@ func Run() {
 	router.GET("/", controller.Index)
 
 	router.Run(":8081")
+}
+
+func createMyRender() multitemplate.Render {
+	r := multitemplate.New()
+	path := "src/infrastructure/view/"
+	//
+	//r.AddFromFiles("editTweet", path+"layout.html", path+"private.navbar.html", path+"edit.tweet.html")
+	//r.AddFromFiles("Index", path+"layout.html", path+"public.navbar.html", path+"index.html")
+	//r.AddFromFiles("Index_Private", path+"layout.html", path+"private.navbar.html", path+"index.html")
+	r.AddFromFiles("article", path+"base.html", path+"index.html", path+"article.html")
+
+	return r
 }

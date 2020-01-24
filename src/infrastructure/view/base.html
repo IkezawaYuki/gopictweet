@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
-be-su
-{{template "index.html"}}
+    {{template "header.html" .}}
+    <div class="container">
+        {{ template "content" . }}
+    </div>
 </body>
 </html>

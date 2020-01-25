@@ -36,18 +36,24 @@ func (tr *tweetRepository) CountNumComment(tweetID int) (num int, err error) {
 	return
 }
 
-// Upsert 同じプライマリーキーを持つ物を見つけたらupdate見つからない場合はinsert
-func (tr *tweetRepository) Upsert(tweet *model.Tweet) (result *model.Tweet, err error) {
-	err = tr.db.Where(model.Tweet{ID: tweet.ID}).Attrs(model.Tweet{
-		UuID:   tweet.UuID,
-		UserID: tweet.UserID,
-		Text:   tweet.Text,
-		Image:  tweet.Image,
-	}).FirstOrCreate(&tweet).Scan(&result).Error
-	if err != nil {
-		fmt.Printf("sql error: %v", err.Error())
-	}
-	return
+func (tr *tweetRepository) Create(t *model.Tweet) (*model.Tweet, error) {
+	err := tr.db.Create(t).Error
+	//if err != nil {
+	//	fmt.Printf("sql error: %v", err.Error())
+	//	return nil, err
+	//}
+	//return &tweet, nil
+	return nil, err
+}
+
+func (tr *tweetRepository) Update(t *model.Tweet) (*model.Tweet, error) {
+	err := tr.db.Update(t).Error
+	//if err != nil {
+	//	fmt.Printf("sql error: %v", err.Error())
+	//	return nil, err
+	//}
+	//return &tweet, nil
+	return nil, err
 }
 
 // Delete tweetの削除

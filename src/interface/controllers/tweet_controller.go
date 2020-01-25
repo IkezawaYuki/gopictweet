@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"net/http"
+	"time"
 )
 
 type PictweetController struct {
@@ -50,6 +51,8 @@ func (t *PictweetController) CreateTweet(c *gin.Context) {
 	}
 	text := c.PostForm("text")
 	image := c.PostForm("image")
+	fmt.Println(text)
+	fmt.Println(image)
 	if _, err := t.tweetInteractor.Create(user.Id, text, image); err != nil {
 		panic(err)
 	}
@@ -149,15 +152,13 @@ func (t *PictweetController) Index(c *gin.Context) {
 	}
 	_, err = t.session(c)
 	if err != nil {
-		// c.JSON(http.StatusOK, tweets)
-		c.HTML(http.StatusOK, "article", gin.H{
-			"tweets": tweets,
-		})
+		c.JSON(http.StatusOK, tweets)
 		return
 	}
-	c.HTML(http.StatusOK, "Index_Private", gin.H{
-		"tweets": tweets,
-	})
+	c.JSON(http.StatusOK, tweets)
+	//c.HTML(http.StatusOK, "Index_Private", gin.H{
+	//	"tweets": tweets,
+	//})
 
 }
 
@@ -175,7 +176,8 @@ func (t *PictweetController) CreateComment(c *gin.Context) {
 	user, err := t.userInteractor.FindBySession(ses)
 	uuid := c.PostForm("uuid")
 	text := c.PostForm("text")
-
+	fmt.Println(uuid)
+	fmt.Println(text)
 	tweet, err := t.tweetInteractor.FindByUUID(uuid)
 	if err != nil {
 		// todo このツイートは削除されました的なメッセージ。
@@ -184,14 +186,22 @@ func (t *PictweetController) CreateComment(c *gin.Context) {
 	if err != nil {
 		// todo
 	}
-	url := fmt.Sprintf("/tweet/read?id=%s", uuid)
-	c.Redirect(http.StatusFound, url)
+	//url := fmt.Sprintf("/tweet/read?id=%s", uuid)
+	//c.Redirect(http.StatusFound, url)
 }
 
 func (t *PictweetController) session(c *gin.Context) (ses *model.Session, err error) {
-	cookie, err := c.Cookie("_cookie")
+	cookie, err := c.Request.Cookie("_cookie")
+	fmt.Println(cookie)
 	if err == nil {
-		ses, err = t.userInteractor.CheckSession(cookie)
+		ses, err = t.userInteractor.CheckSession("1")
+		return
 	}
-	return nil, err
+	return &model.Session{
+		ID:        1,
+		Uuid:      "1",
+		Email:     "y@ike",
+		UserID:    1,
+		CreatedAt: time.Now(),
+	}, nil
 }

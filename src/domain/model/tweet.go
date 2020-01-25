@@ -5,7 +5,7 @@ import "time"
 // gorm のユニークkey をUuidにせよ
 type Tweet struct {
 	ID        int       `gorm:"id"`
-	UuID      string    `gorm:"uuid"`
+	Uuid      string    `gorm:"uuid"`
 	UserID    int       `gorm:"user_id"`
 	Text      string    `gorm:"text"`
 	Image     string    `gorm:"image"`

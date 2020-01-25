@@ -26,7 +26,7 @@ func (c *commentInteractor) Index() (*model.Comments, error) {
 
 func (c *commentInteractor) Create(userID int, tweetID int, text string) (*model.Comment, error) {
 	comment := &model.Comment{
-		UuID:      service.CreateUUID(),
+		Uuid:      service.CreateUUID(),
 		UserID:    userID,
 		TweetID:   tweetID,
 		Text:      text,

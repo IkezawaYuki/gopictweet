@@ -4,7 +4,7 @@ import "time"
 
 type Comment struct {
 	ID        int
-	UuID      string
+	Uuid      string
 	UserID    int
 	TweetID   int
 	Text      string

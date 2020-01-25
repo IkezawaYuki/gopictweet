@@ -65,9 +65,10 @@ func (ur *userRepository) DeleteAll() (err error) {
 	return
 }
 
-func (ur *userRepository) FindBySessionID(sessionID string) (user *model.User, err error) {
-	err = ur.db.Where("session_id = ?", sessionID).Find(&user).Error
-	return
+func (ur *userRepository) FindBySessionID(sessionID string) (*model.User, error) {
+	var user model.User
+	err := ur.db.Where("id = ?", sessionID).First(&user).Error
+	return &user, err
 }
 
 func (ur *userRepository) FindByUUID(uuid string) (user *model.User, err error) {

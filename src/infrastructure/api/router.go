@@ -26,6 +26,7 @@ func Run() {
 
 	controller := controllers.NewPicTweetController(handler)
 
+	router.POST("/tweet/create", controller.CreateTweet)
 	router.GET("/tweet/edit", controller.EditTweet)
 	router.GET("/", controller.Index)
 

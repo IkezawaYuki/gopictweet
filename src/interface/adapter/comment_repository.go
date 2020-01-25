@@ -42,7 +42,7 @@ func (cr *commentRepository) FindByTweet(tweetID int) (comments *model.Comments,
 
 func (cr *commentRepository) Upsert(comment *model.Comment) (result *model.Comment, err error) {
 	err = cr.db.Where(model.Comment{ID: comment.ID}).Attrs(model.Comment{
-		UuID:    comment.UuID,
+		Uuid:    comment.Uuid,
 		UserID:  comment.UserID,
 		TweetID: comment.TweetID,
 		Text:    comment.Text,

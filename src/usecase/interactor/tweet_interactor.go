@@ -36,13 +36,13 @@ func (t *tweetInteractor) Index() ([]model.Tweet, error) {
 
 func (t *tweetInteractor) Create(userID int, text string, image string) (*model.Tweet, error) {
 	tweetObj := &model.Tweet{
-		UuID:      service.CreateUUID(),
+		Uuid:      service.CreateUUID(),
 		UserID:    userID,
 		Text:      text,
 		Image:     image,
 		CreatedAt: time.Now(),
 	}
-	tweet, err := t.tweetRepository.Upsert(tweetObj)
+	tweet, err := t.tweetRepository.Create(tweetObj)
 	if err != nil {
 		return nil, err
 	}
@@ -51,13 +51,13 @@ func (t *tweetInteractor) Create(userID int, text string, image string) (*model.
 
 func (t *tweetInteractor) Update(userID int, uuid string, text string, image string) (*model.Tweet, error) {
 	tweetObj := &model.Tweet{
-		UuID:      uuid,
+		Uuid:      uuid,
 		UserID:    userID,
 		Text:      text,
 		Image:     image,
 		CreatedAt: time.Time{},
 	}
-	tweet, err := t.tweetRepository.Upsert(tweetObj)
+	tweet, err := t.tweetRepository.Update(tweetObj)
 	if err != nil {
 		return nil, err
 	}

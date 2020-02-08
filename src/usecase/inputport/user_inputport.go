@@ -1,6 +1,6 @@
 package inputport
 
-import "github.com/IkezawaYuki/gopictweet/src/domain/model"
+import "github.com/IkezawaYuki/pictweet-api/src/domain/model"
 
 type UserInputport interface {
 	CheckSession(string) (*model.Session, error)

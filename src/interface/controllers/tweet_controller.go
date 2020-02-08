@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/IkezawaYuki/gopictweet/src/domain/model"
-	"github.com/IkezawaYuki/gopictweet/src/interface/adapter"
-	"github.com/IkezawaYuki/gopictweet/src/usecase/inputport"
-	"github.com/IkezawaYuki/gopictweet/src/usecase/interactor"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/model"
+	"github.com/IkezawaYuki/pictweet-api/src/interface/adapter"
+	"github.com/IkezawaYuki/pictweet-api/src/usecase/inputport"
+	"github.com/IkezawaYuki/pictweet-api/src/usecase/interactor"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"net/http"

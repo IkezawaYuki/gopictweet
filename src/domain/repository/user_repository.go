@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/IkezawaYuki/gopictweet/src/domain/model"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/model"
 )
 
 type UserRepository interface {

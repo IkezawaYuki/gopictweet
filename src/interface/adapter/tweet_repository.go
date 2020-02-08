@@ -2,8 +2,8 @@ package adapter
 
 import (
 	"fmt"
-	"github.com/IkezawaYuki/gopictweet/src/domain/model"
-	"github.com/IkezawaYuki/gopictweet/src/domain/repository"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/model"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/repository"
 	"github.com/jinzhu/gorm"
 )
 

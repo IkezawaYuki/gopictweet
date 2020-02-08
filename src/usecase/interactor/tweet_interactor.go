@@ -1,10 +1,10 @@
 package interactor
 
 import (
-	"github.com/IkezawaYuki/gopictweet/src/domain/model"
-	"github.com/IkezawaYuki/gopictweet/src/domain/repository"
-	"github.com/IkezawaYuki/gopictweet/src/domain/service"
-	"github.com/IkezawaYuki/gopictweet/src/usecase/inputport"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/model"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/repository"
+	"github.com/IkezawaYuki/pictweet-api/src/domain/service"
+	"github.com/IkezawaYuki/pictweet-api/src/usecase/inputport"
 	"time"
 )
 

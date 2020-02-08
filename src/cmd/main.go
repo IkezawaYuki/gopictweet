@@ -1,6 +1,6 @@
 package main
 
-import "github.com/IkezawaYuki/gopictweet/src/infrastructure/api"
+import "github.com/IkezawaYuki/pictweet-api/src/infrastructure/api"
 
 func main() {
 	api.Run()
